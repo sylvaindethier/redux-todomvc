@@ -19,7 +19,9 @@ function isTEST(env) {
 }
 
 function getPlugins(env) {
-  var plugins = [new webpack.optimize.OccurenceOrderPlugin()];
+  var plugins = [
+    new webpack.optimize.OccurenceOrderPlugin(),
+  ];
 
   switch(true) {
     case isPROD(env):
@@ -52,7 +54,7 @@ function getLoaders(env) {
 function getEntry(env) {
   var entry = {
     // TodoApp entry point
-    'todo-app': path.resolve(srcPath, 'index.js'),
+    'todomvc-app': path.resolve(srcPath, 'index.js'),
 
     // vendors
     // 'vendors': [],
@@ -78,7 +80,8 @@ function getConfig(env) {
     stats: { colors: true },
     debug: true,
     // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
-    devtool: isPROD(env) ? 'source-map' : 'eval-source-map',
+    // devtool: isPROD(env) ? 'source-map' : 'eval-source-map',
+    devtool: 'source-map',
     devServer: {
       contentBase: distPath,
     },
