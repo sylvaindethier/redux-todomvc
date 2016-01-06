@@ -1,0 +1,27 @@
+{
+  "name": "redux-todomvc",
+  "version": "1.0.0",
+  "description": "Redux TodoMVC application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "react": "^0.14.5",
+    "react-redux": "^4.0.6",
+    "redux": "^3.0.5"
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sylvaindethier/redux-todomvc.git"
+  },
+  "author": "Sylvain Dethier",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sylvaindethier/redux-todomvc/issues"
+  },
+  "homepage": "https://github.com/sylvaindethier/redux-todomvc#readme",
+}
