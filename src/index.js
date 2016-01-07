@@ -7,7 +7,22 @@ import App from './containers/App';
 import configureStore from './store/configureStore';
 
 
-let initialState;
+// initial todos
+const todos = [
+  {
+    text: 'initial: Use Redux',
+    completed: true,
+    id: 0,
+  },
+  {
+    text: 'initial: Learn to connect it to React',
+    completed: false,
+    id: 1,
+  },
+];
+
+
+const initialState = { todos };
 const store = configureStore(initialState);
 render(
   <Provider store={store}>

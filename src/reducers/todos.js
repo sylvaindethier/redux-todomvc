@@ -1,13 +1,8 @@
-const initialState = [
-  {
-    text: 'Use Redux',
-    completed: false,
-    id: 0,
-  },
-];
+// initialize w/ empty collection (array)
+const initialState = [];
 
-function createReducer(initial, handlers) {
-  return function todosReducer(state = initial, action) {
+function createReducer(handlers) {
+  return function todos(state = initialState, action) {
     if (handlers.hasOwnProperty(action.type)) {
       return handlers[action.type](state, action);
     }
@@ -16,8 +11,7 @@ function createReducer(initial, handlers) {
   };
 }
 
-const assign = Object.assign;
-export default createReducer(initialState, {
+export default createReducer({
   ADD_TODO(state, action) {
     const text = action.payload;
     return [
@@ -47,7 +41,7 @@ export default createReducer(initialState, {
     // state w/ modified text todo item
     return state.map(todo =>
       todo.id === id ?
-        assign({}, todo, { text }) :
+        Object.assign({}, todo, { text }) :
         todo
     );
   },
@@ -57,7 +51,7 @@ export default createReducer(initialState, {
     // state w/ toggled completed todo item
     return state.map(todo =>
       todo.id === id ?
-        assign({}, todo, { completed: !todo.completed }) :
+        Object.assign({}, todo, { completed: !todo.completed }) :
         todo
     );
   },
@@ -65,8 +59,8 @@ export default createReducer(initialState, {
   COMPLETE_ALL(state) {
     const areAllCompleted = state.every(todo => todo.completed);
     // state w/ modified completed todos
-    return state.map(todo => assign({}, todo, {
-      completed: !!areAllCompleted,
+    return state.map(todo => Object.assign({}, todo, {
+      completed: !areAllCompleted,
     }));
   },
 
