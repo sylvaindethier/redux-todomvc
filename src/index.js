@@ -4,7 +4,8 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 // containers and store
 import App from './containers/App';
-import configureStore from './store/configureStore';
+// tips: avoid exporting initialize for Hot Module Replacement
+const initializeStore = require('./store/initialize' + (module.hot ? '-hot' : ''));
 
 
 // initial todos
@@ -23,7 +24,7 @@ const todos = [
 
 
 const initialState = { todos };
-const store = configureStore(initialState);
+const store = initializeStore(initialState);
 render(
   <Provider store={store}>
     <App />
