@@ -4,9 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 // containers and store
 import App from './containers/App';
-// tips: avoid exporting initialize for Hot Module Replacement
-const initializeStore = require('./store/initialize' + (module.hot ? '-hot' : ''));
-
+import initializeStore from './store';
 
 // initial todos
 const todos = [
