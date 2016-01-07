@@ -26,9 +26,7 @@ module.exports = {
     es6: true, // enable all ECMAScript 6 features except for modules.
   },
 
-  extends: ['eslint:recommended', 'airbnb'],
-
-  exclude: ['public/js'],
+  'extends': ['eslint:recommended', 'airbnb'],
 
   ecmaFeatures: {
     arrowFunctions: true,

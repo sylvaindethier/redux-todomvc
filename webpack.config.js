@@ -1,11 +1,11 @@
 // For info about this file refer to webpack and webpack-hot-middleware documentation
 // Rather than having hard coded webpack.config.js for each environment, this
 // file generates a webpack config for the environment passed to the getConfig method.
-var webpack = require('webpack');
-var path = require('path');
+const webpack = require('webpack');
+const path = require('path');
 
-var srcPath = path.resolve(__dirname, 'src');
-var distPath = path.resolve(__dirname, 'public');
+const srcPath = path.resolve(__dirname, 'src');
+const distPath = path.resolve(__dirname, 'public');
 
 
 function isPROD(env) {
@@ -19,18 +19,20 @@ function isTEST(env) {
 }
 
 function getPlugins(env) {
-  var plugins = [
+  const plugins = [
     new webpack.optimize.OccurenceOrderPlugin(),
   ];
 
-  switch(true) {
+  switch (true) {
     case isPROD(env):
       plugins.push(new webpack.optimize.DedupePlugin());
-      plugins.push(new webpack.optimize.UglifyJsPlugin({minimize: true, sourceMap: true}));
+      plugins.push(new webpack.optimize.UglifyJsPlugin({ minimize: true, sourceMap: true }));
       break;
     case isDEV(env):
       plugins.push(new webpack.HotModuleReplacementPlugin());
       plugins.push(new webpack.NoErrorsPlugin());
+      break;
+    default:
       break;
   }
 
@@ -38,8 +40,8 @@ function getPlugins(env) {
 }
 
 
-function getLoaders(env) {
-  var loaders = [
+function getLoaders(/* env */) {
+  const loaders = [
     // Babel & ESLint loaders for JS & JSX files
     {
       loaders: ['babel', 'eslint'],
@@ -51,8 +53,8 @@ function getLoaders(env) {
   return loaders;
 }
 
-function getEntry(env) {
-  var entry = {
+function getEntry(/* env */) {
+  const entry = {
     // TodoApp entry point
     'todomvc-app': path.resolve(srcPath, 'index.js'),
 
@@ -71,21 +73,22 @@ function getConfig(env) {
       filename: '[name].js',
       publicPath: '/js/', // serve under '/js/' path
     },
-    //necessary per https://webpack.github.io/docs/testing.html#compile-and-test
+    // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
     target: isTEST(env) ? 'node' : 'web',
     plugins: getPlugins(env),
     module: { loaders: getLoaders(env) },
 
-    resolve: { extensions: ["", ".web.js", ".js", ".jsx"] },
+    resolve: { extensions: ['', '.web.js', '.js', '.jsx'] },
     stats: { colors: true },
     debug: true,
-    // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
+    // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps
+    // and https://webpack.github.io/docs/configuration.html#devtool
     // devtool: isPROD(env) ? 'source-map' : 'eval-source-map',
     devtool: 'source-map',
     devServer: {
       contentBase: distPath,
     },
-  }
+  };
 }
 
 module.exports = getConfig(process.env.NODE_ENV);
