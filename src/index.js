@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 // containers and store
 import App from './containers/App';
-import initializeStore from './store';
+import configureStore from './store/configureStore';
 
 // initial todos
 const todos = [
@@ -22,7 +22,7 @@ const todos = [
 
 
 const initialState = { todos };
-const store = initializeStore(initialState);
+const store = configureStore(initialState);
 render(
   <Provider store={store}>
     <App />
