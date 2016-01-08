@@ -1,6 +1,14 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
 
-export default function initialize(initialState) {
-  return createStore(rootReducer, initialState);
+const middlewares = [
+];
+const creators = [
+  // Middleware you want to use in development:
+  applyMiddleware(...middlewares),
+];
+
+const finalCreateStore = compose(...creators)(createStore);
+export default function configureStore(initialState) {
+  return finalCreateStore(rootReducer, initialState);
 }

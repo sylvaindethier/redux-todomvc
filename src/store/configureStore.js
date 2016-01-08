@@ -1,3 +1,4 @@
-// export hot module on demand
+// export configureStore
 const suffix = process.env.NODE_ENV === 'production' ? '.prod' : '.dev';
-export default require('./configureStore' + suffix);
+module.exports = require('./configureStore' + suffix);
+export default module.exports;
