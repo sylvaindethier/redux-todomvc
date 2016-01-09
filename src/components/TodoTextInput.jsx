@@ -1,15 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-
-const conf = {
-  className(isNew) { return isNew ? 'new-todo' : 'edit'; },
-};
+import { TodoTextInput as defaultProps } from './defaultProps';
 
 const ENTER_KEYCODE = 13;
+
 
 export default class TodoTextInput extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = this.buildState(this.props.value || '');
+    this.state = this.buildState(this.props.value);
 
     // bind event handlers to this (no auto binding in Component)
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -49,16 +47,16 @@ export default class TodoTextInput extends Component {
   }
 
   render() {
+    const { input } = this.props;
     return (
       <input
         type="text"
-        className={conf.className(this.props.isNew)}
-        placeholder={this.props.placeholder}
         autoFocus="true"
         value={this.state.value}
         onBlur={this.handleBlur}
         onChange={this.handleChange}
         onKeyDown={this.handleKeyDown}
+        {...input}
       />
     );
   }
@@ -67,6 +65,8 @@ export default class TodoTextInput extends Component {
 TodoTextInput.propTypes = {
   save: PropTypes.func.isRequired,
   value: PropTypes.string,
-  placeholder: PropTypes.string,
   isNew: PropTypes.bool,
+  input: PropTypes.object,
 };
+
+TodoTextInput.defaultProps = defaultProps;

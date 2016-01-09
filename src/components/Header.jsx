@@ -1,11 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import TodoTextInput from './TodoTextInput';
-
-const conf = {
-  header: { className: 'header' },
-  h1_text: 'todos',
-  TodoTextInput: { placeholder: 'What needs to be done' },
-};
+import TodoTextInputComponent from './TodoTextInput';
+import { Header as defaultProps } from './defaultProps';
 
 export default class Header extends Component {
   constructor(props, context) {
@@ -22,14 +17,11 @@ export default class Header extends Component {
   }
 
   render() {
+    const { header, h1, TodoTextInput } = this.props;
     return (
-      <header {...conf.header}>
-          <h1 {...conf.h1}>{conf.h1_text}</h1>
-          <TodoTextInput
-            isNew
-            save={this.createTodo}
-            {...conf.TodoTextInput}
-          />
+      <header {...header}>
+        <h1 {...h1} />
+        <TodoTextInputComponent save={this.createTodo} {...TodoTextInput} />
       </header>
     );
   }
@@ -37,4 +29,9 @@ export default class Header extends Component {
 
 Header.propTypes = {
   createTodoAction: PropTypes.func.isRequired,
+  header: PropTypes.object,
+  h1: PropTypes.object,
+  TodoTextInput: PropTypes.object,
 };
+
+Header.defaultProps = defaultProps;
