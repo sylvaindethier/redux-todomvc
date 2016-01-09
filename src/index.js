@@ -20,9 +20,9 @@ const todos = [
     id: 1,
   },
 ];
+const filters = ['NONE'];
 
-
-const initialState = { todos };
+const initialState = { todos, filters };
 const store = configureStore(initialState);
 render(
   <Provider store={store}>
