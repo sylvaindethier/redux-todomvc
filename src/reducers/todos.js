@@ -12,7 +12,7 @@ function createReducer(handlers) {
 }
 
 export default createReducer({
-  ADD_TODO(state, action) {
+  CREATE_TODO(state, action) {
     const text = action.payload;
     return [
       // prepend new todo item
@@ -25,6 +25,16 @@ export default createReducer({
     ];
   },
 
+  UPDATE_TODO(state, action) {
+    const { id, text } = action.payload;
+    // state w/ modified text todo item
+    return state.map(todo =>
+      todo.id === id ?
+        Object.assign({}, todo, { text }) :
+        todo
+    );
+  },
+
   DELETE_TODO(state, action) {
     const id = action.payload;
     // state minus todo item
@@ -34,16 +44,6 @@ export default createReducer({
   DELETE_COMPLETED(state) {
     // state minus completed todos
     return state.filter(todo => todo.completed === false);
-  },
-
-  EDIT_TODO(state, action) {
-    const { id, text } = action.payload;
-    // state w/ modified text todo item
-    return state.map(todo =>
-      todo.id === id ?
-        Object.assign({}, todo, { text }) :
-        todo
-    );
   },
 
   COMPLETE_TODO(state, action) {
