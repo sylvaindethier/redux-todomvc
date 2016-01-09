@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // actions
-import TodoActions from '../actions/todos';
+import Actions from '../actions';
 // components
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
@@ -11,10 +11,10 @@ import MainSection from '../components/MainSection';
 class App extends Component {
   render() {
     // Injected by connect() call:
-    const { todos, actions } = this.props;
+    const { actions, todos } = this.props;
     return (
       <div>
-        <Header addTodo={actions.addTodo} />
+        <Header createTodoAction={actions.createTodo} />
         <MainSection todos={todos} actions={actions} />
       </div>
     );
@@ -34,12 +34,13 @@ App.propTypes = {
 function mapStateToProps(state) {
   return {
     todos: state.todos,
+    filters: state.filters,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(TodoActions, dispatch),
+    actions: bindActionCreators(Actions, dispatch),
   };
 }
 
