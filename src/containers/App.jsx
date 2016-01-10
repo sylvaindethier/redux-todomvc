@@ -5,17 +5,16 @@ import { bindActionCreators } from 'redux';
 import Actions from '../actions';
 // components
 import Header from '../components/Header';
-import MainSection from '../components/MainSection';
-
+// import MainSection from '../components/MainSection';
 
 class App extends Component {
   render() {
+    // <MainSection todos={todos} actions={actions} />
     // Injected by connect() call:
-    const { actions, todos } = this.props;
+    const { actions } = this.props;
     return (
       <div>
         <Header createTodoAction={actions.createTodo} />
-        <MainSection todos={todos} actions={actions} />
       </div>
     );
   }
