@@ -11,6 +11,7 @@ function createReducer(handlers) {
   };
 }
 
+
 export default createReducer({
   CREATE_TODO(state, action) {
     const text = action.payload;
@@ -41,12 +42,17 @@ export default createReducer({
     return state.filter(todo => todo.id !== id);
   },
 
-  DELETE_COMPLETED(state) {
+  DELETE_ALL() {
+    // empty collection
+    return [];
+  },
+
+  DELETE_ALL_DONE(state) {
     // state minus completed todos
     return state.filter(todo => todo.completed === false);
   },
 
-  COMPLETE_TODO(state, action) {
+  TOGGLEDONE_TODO(state, action) {
     const id = action.payload;
     // state w/ toggled completed todo item
     return state.map(todo =>
@@ -56,12 +62,11 @@ export default createReducer({
     );
   },
 
-  COMPLETE_ALL(state) {
+  TOGGLEDONE_ALL(state) {
     const areAllCompleted = state.every(todo => todo.completed);
     // state w/ modified completed todos
     return state.map(todo => Object.assign({}, todo, {
       completed: !areAllCompleted,
     }));
   },
-
 });

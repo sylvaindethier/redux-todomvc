@@ -11,12 +11,12 @@ import configureStore from './store/configureStore';
 const todos = [
   {
     text: 'initial: Use Redux',
-    completed: true,
+    isDone: true,
     id: 0,
   },
   {
     text: 'initial: Learn to connect it to React',
-    completed: false,
+    isDone: false,
     id: 1,
   },
 ];
