@@ -1,5 +1,5 @@
 function preDispatch({ action, getState }) {
-  console.group(action.type);
+  console.groupCollapsed(action.type);
   console.info('>>> dispatching', action, getState());
 }
 

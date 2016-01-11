@@ -1,16 +1,18 @@
 import React, { PropTypes, Component } from 'react';
-import CreateTodoComponent from './actions/CreateTodo';
-import { Header as defaultProps } from './defaultProps';
+import { Header as defaultProps, defaultProps as defaults } from './defaultProps';
+import CreateText from './actions/CreateText';
+
 
 export default class Header extends Component {
   render() {
-    const { header, h1, CreateTodo, createTodoAction } = this.props;
+    const { actions, header } = this.props;
+    const { h1, CreateText: createText } = header.children;
     return (
-      <header {...header}>
-        <h1 {...h1} />
-        <CreateTodoComponent
-          createTodoAction={createTodoAction}
-          {...CreateTodo}
+      <header {...defaults(header)}>
+        <h1 {...defaults(h1)} />
+        <CreateText
+          createTextAction={actions.createText}
+          {...defaults(createText)}
         />
       </header>
     );
@@ -18,10 +20,12 @@ export default class Header extends Component {
 }
 
 Header.propTypes = {
-  createTodoAction: PropTypes.func.isRequired,
-  CreateTodo: PropTypes.object,
-  header: PropTypes.object,
-  h1: PropTypes.object,
+  actions: PropTypes.object.isRequired,
+
+  header: PropTypes.shape({ children: PropTypes.shape({
+    h1: PropTypes.object,
+    CreateText: PropTypes.object,
+  }) }),
 };
 
 Header.defaultProps = defaultProps;

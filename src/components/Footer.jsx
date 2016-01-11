@@ -1,75 +1,50 @@
 import React, { PropTypes, Component } from 'react';
-import classnames from 'classnames';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters';
-
-const FILTER_TITLES = {
-  [SHOW_ALL]: 'All',
-  [SHOW_ACTIVE]: 'Active',
-  [SHOW_COMPLETED]: 'Completed',
-};
-
+import { Footer as defaultProps, defaultProps as defaults } from './defaultProps';
+import FilterList from './FilterList';
+import DeleteAllDone from './actions/DeleteAllDone';
 
 export default class Footer extends Component {
-  renderTodoCount() {
-    const { activeCount } = this.props;
-    const itemWord = activeCount === 1 ? 'item' : 'items';
-
-    return (
-      <span className="todo-count">
-        <strong>{activeCount || 'No'}</strong> {itemWord} left
-      </span>
-    );
-  }
-
-  renderFilterLink(filter) {
-    const title = FILTER_TITLES[filter];
-    const { filter: selectedFilter, onShow } = this.props;
-    const onClick = () => onShow(filter);
-
-    return (
-      <a
-        className={classnames({ selected: filter === selectedFilter })}
-        style={{ cursor: 'pointer' }}
-        onClick={onClick}
-      >
-        {title}
-      </a>
-    );
-  }
-
-  renderClearButton() {
-    const { completedCount, onClearCompleted } = this.props;
-    if (completedCount > 0) {
-      return (
-        <button className="clear-completed" onClick={onClearCompleted}>
-          Clear completed
-        </button>
-      );
-    }
-  }
-
   render() {
-    const filterNodes = [SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map(filter =>
-      <li key={filter}>
-        {this.renderFilterLink(filter)}
-      </li>
-    );
+    const { actions, filter, totalCount, doneCount, filteredCount } = this.props;
+    const leftCount = totalCount - doneCount;
+
+    const { footer } = this.props;
+    const {
+      span,
+      FilterList: filterList,
+      DeleteAllDone: deleteAllDone,
+    } = footer.children;
     return (
-      <footer className="footer">
-        {this.renderTodoCount()}
-        <ul className="filters">
-          {filterNodes}
-        </ul>
-        {this.renderClearButton()}
+      <footer {...defaults(footer)}>
+        <span {...defaults(span, leftCount, totalCount, filteredCount)} />
+        <FilterList
+          actions={actions}
+          filter={filter}
+          {...defaults(filterList)}
+        />
+      {doneCount < 1 ? null : (
+        <DeleteAllDone
+          deleteAllDoneAction={actions.deleteAllDone}
+          {...defaults(deleteAllDone)}
+        />
+      )}
       </footer>
     );
   }
 }
 
 Footer.propTypes = {
-  completedCount: PropTypes.number.isRequired,
-  activeCount: PropTypes.number.isRequired,
+  actions: PropTypes.object.isRequired,
   filter: PropTypes.string.isRequired,
-  onClearCompleted: PropTypes.func.isRequired,
-  onShow: PropTypes.func.isRequired,
+
+  totalCount: PropTypes.number,
+  doneCount: PropTypes.number,
+  filteredCount: PropTypes.number,
+  footer: PropTypes.shape({ children: PropTypes.shape({
+    span: PropTypes.object,
+    FilterList: PropTypes.object,
+    DeleteAllDone: PropTypes.object,
+  }) }),
 };
+
+Footer.defaultProps = defaultProps;

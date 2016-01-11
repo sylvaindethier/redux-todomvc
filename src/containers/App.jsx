@@ -5,35 +5,40 @@ import { bindActionCreators } from 'redux';
 import Actions from '../actions';
 // components
 import Header from '../components/Header';
+import MainSection from '../components/MainSection';
+
 // import MainSection from '../components/MainSection';
 
 class App extends Component {
   render() {
     // <MainSection todos={todos} actions={actions} />
     // Injected by connect() call:
-    const { actions } = this.props;
+    const { actions, todos, filter } = this.props;
     return (
       <div>
-        <Header createTodoAction={actions.createTodo} />
+        <Header actions={actions} />
+        <MainSection actions={actions} todos={todos} filter={filter} />
       </div>
     );
   }
 }
 
 App.propTypes = {
+  actions: PropTypes.object.isRequired,
+
   todos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired,
+    done: PropTypes.bool.isRequired,
   }).isRequired).isRequired,
 
-  actions: PropTypes.object.isRequired,
+  filter: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     todos: state.todos,
-    filters: state.filters,
+    filter: state.filter,
   };
 }
 

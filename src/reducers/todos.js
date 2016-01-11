@@ -13,20 +13,20 @@ function createReducer(handlers) {
 
 
 export default createReducer({
-  CREATE_TODO(state, action) {
+  CREATE_TEXT(state, action) {
     const text = action.payload;
     return [
       // prepend new todo item
       {
         id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-        completed: false,
+        done: false,
         text,
       },
       ...state,
     ];
   },
 
-  UPDATE_TODO(state, action) {
+  UPDATE_TODO_TEXT(state, action) {
     const { id, text } = action.payload;
     // state w/ modified text todo item
     return state.map(todo =>
@@ -49,24 +49,24 @@ export default createReducer({
 
   DELETE_ALL_DONE(state) {
     // state minus completed todos
-    return state.filter(todo => todo.completed === false);
+    return state.filter(todo => todo.done === false);
   },
 
-  TOGGLEDONE_TODO(state, action) {
+  TOGGLE_TODO_DONE(state, action) {
     const id = action.payload;
     // state w/ toggled completed todo item
     return state.map(todo =>
       todo.id === id ?
-        Object.assign({}, todo, { completed: !todo.completed }) :
+        Object.assign({}, todo, { done: !todo.done }) :
         todo
     );
   },
 
-  TOGGLEDONE_ALL(state) {
-    const areAllCompleted = state.every(todo => todo.completed);
+  TOGGLE_ALL_DONE(state) {
+    const areAllDone = state.every(todo => todo.done);
     // state w/ modified completed todos
     return state.map(todo => Object.assign({}, todo, {
-      completed: !areAllCompleted,
+      done: !areAllDone,
     }));
   },
 });

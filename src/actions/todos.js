@@ -1,32 +1,32 @@
 // FSA compliant, see https://github.com/acdlite/flux-standard-action
 import { createAction } from 'redux-actions';
 import {
-  CREATE_TODO,
-  UPDATE_TODO,
+  CREATE_TEXT,
+  UPDATE_TODO_TEXT,
   DELETE_TODO,
   DELETE_ALL,
   DELETE_ALL_DONE,
-  TOGGLEDONE_TODO,
-  TOGGLEDONE_ALL,
+  TOGGLE_TODO_DONE,
+  TOGGLE_ALL_DONE,
 } from '../constants/actions';
 
-// createTodo payload: text
-export const createTodo = createAction(CREATE_TODO, text => text);
+// createText payload: text
+export const createText = createAction(CREATE_TEXT, text => text);
 
 // updateTodo payload: { id, text }
-export const updateTodo = createAction(UPDATE_TODO, (id, text) => ({ id, text }));
+export const updateTodoText = createAction(UPDATE_TODO_TEXT, (id, text) => ({ id, text }));
 
 // deleteTodo payload: id
 export const deleteTodo = createAction(DELETE_TODO, id => id);
 
 // deleteAll payload: undefined (none)
-export const deleteAll = createAction(DELETE_ALL, id => id);
+export const deleteAll = createAction(DELETE_ALL, () => undefined);
 
 // deleteAllDone payload: undefined (none)
 export const deleteAllDone = createAction(DELETE_ALL_DONE, () => undefined);
 
-// toggleDoneTodo payload: id
-export const toggleDoneTodo = createAction(TOGGLEDONE_TODO, id => id);
+// toggleTodoDone payload: id
+export const toggleTodoDone = createAction(TOGGLE_TODO_DONE, id => id);
 
-// toggleDoneAll payload: undefined (none)
-export const toggleDoneAll = createAction(TOGGLEDONE_ALL, () => undefined);
+// toggleAllDone payload: undefined (none)
+export const toggleAllDone = createAction(TOGGLE_ALL_DONE, () => undefined);

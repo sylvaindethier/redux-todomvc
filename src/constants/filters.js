@@ -1,3 +1,3 @@
 export const NONE = 'NONE';
-export const COMPLETED = 'COMPLETED';
-export const UNCOMPLETED = 'UNCOMPLETED';
+export const DONE = 'DONE';
+export const TODO = 'TODO';

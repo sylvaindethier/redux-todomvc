@@ -1,13 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import { TodoTextInput as defaultProps } from './defaultProps';
+import { TodoTextInput as defaultProps, defaultProps as defaults } from './defaultProps';
+
 
 const ENTER_KEYCODE = 13;
+function buildState(value) { return { value }; }
 
 
 export default class TodoTextInput extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = this.buildState(this.props.value);
+    this.state = buildState(this.props.value);
 
     // bind event handlers to this (no auto binding in Component)
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -15,13 +17,9 @@ export default class TodoTextInput extends Component {
     this.handleBlur = this.handleBlur.bind(this);
   }
 
-  buildState(value) {
-    return { value };
-  }
-
   handleSave(e) {
     const text = e.target.value.trim();
-    this.props.save(text);
+    this.props.saveText(text);
   }
 
   handleKeyDown(e) {
@@ -29,14 +27,14 @@ export default class TodoTextInput extends Component {
       // save on ENTER
       this.handleSave(e);
       if (this.props.isNew) {
-        // and reset for newTodo
-        this.setState(this.buildState(''));
+        // and reset for new todo
+        this.setState(buildState(this.props.value));
       }
     }
   }
 
   handleChange(e) {
-    this.setState(this.buildState(e.target.value));
+    this.setState(buildState(e.target.value));
   }
 
   handleBlur(e) {
@@ -56,14 +54,15 @@ export default class TodoTextInput extends Component {
         onBlur={this.handleBlur}
         onChange={this.handleChange}
         onKeyDown={this.handleKeyDown}
-        {...input}
+        {...defaults(input)}
       />
     );
   }
 }
 
 TodoTextInput.propTypes = {
-  save: PropTypes.func.isRequired,
+  saveText: PropTypes.func.isRequired,
+
   value: PropTypes.string,
   isNew: PropTypes.bool,
   input: PropTypes.object,

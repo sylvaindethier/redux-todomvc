@@ -1,94 +1,75 @@
 import React, { Component, PropTypes } from 'react';
-import TodoItem from './TodoItem';
+import { MainSection as defaultProps, defaultProps as defaults } from './defaultProps';
+import ToggleAllDone from './actions/ToggleAllDone';
+import TodoList from './TodoList';
 import Footer from './Footer';
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters';
 
-const TODO_FILTERS = {
-  [SHOW_ALL]: () => true,
-  [SHOW_ACTIVE]: todo => !todo.completed,
-  [SHOW_COMPLETED]: todo => todo.completed,
+
+import { NONE, DONE, TODO } from '../constants/filters';
+const filterCallbacks = {
+  [NONE]: () => true,
+  [DONE]: todo => todo.done,
+  [TODO]: todo => !todo.done,
 };
 
+
 export default class MainSection extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = { filter: SHOW_ALL };
-
-    // bind handlers as there's no auto binding in Component class
-    this.handleDeleteCompleted = this.handleDeleteCompleted.bind(this);
-    this.handleShow = this.handleShow.bind(this);
-  }
-
-  handleDeleteCompleted() {
-    const { todos, actions } = this.props;
-    const hasOneCompleted = todos.some(todo => todo.completed);
-    if (hasOneCompleted) {
-      actions.deleteCompleted();
-    }
-  }
-
-  handleShow(filter) {
-    this.setState({ filter });
-  }
-
-  renderToggleAll(completedCount) {
-    const { todos, actions } = this.props;
-    if (todos.length > 0) {
-      return (
-        <input
-          className="toggle-all"
-          type="checkbox"
-          checked={completedCount === todos.length}
-          onChange={actions.completeAll}
-        />
-      );
-    }
-  }
-
-  renderFooter(completedCount) {
-    const { todos } = this.props;
-    const { filter } = this.state;
-    const activeCount = todos.length - completedCount;
-
-    if (todos.length) {
-      return (
-        <Footer
-          completedCount={completedCount}
-          activeCount={activeCount}
-          filter={filter}
-          onClearCompleted={this.handleDeleteCompleted}
-          onShow={this.handleShow}
-        />
-      );
-    }
-  }
-
   render() {
-    const { todos, actions } = this.props;
-    const { filter } = this.state;
-
-    const filteredTodos = todos.filter(TODO_FILTERS[filter]);
-    const completedCount = todos.reduce((count, todo) =>
-      todo.completed ? count + 1 : count,
+    const { actions, todos, filter } = this.props;
+    const filtered = todos.filter(filterCallbacks[filter]);
+    const totalCount = todos.length;
+    const doneCount = todos.reduce((count, todo) =>
+      todo.done ? count + 1 : count,
       0
     );
-    const todoItems = filteredTodos.map(todo =>
-      <TodoItem key={todo.id} todo={todo} actions={actions} />
-    );
+    const filteredCount = filtered.length;
 
+
+    const { section } = this.props;
+    const {
+      ToggleAllDone: toggleAllDone,
+      TodoList: todoList,
+      Footer: footer,
+    } = section.children;
     return (
-      <section className="main">
-        {this.renderToggleAll(completedCount)}
-        <ul className="todo-list">
-          {todoItems}
-        </ul>
-        {this.renderFooter(completedCount)}
+      <section {...section}>
+        {!totalCount ? null : (
+          <ToggleAllDone
+            toggleAllDoneAction={actions.toggleAllDone}
+            areAllDone={doneCount === totalCount}
+            {...defaults(toggleAllDone)}
+          />
+        )}
+        <TodoList
+          actions={actions}
+          todos={filtered}
+          {...defaults(todoList)}
+        />
+        {!totalCount ? null : (
+          <Footer
+            actions={actions}
+            filter={filter}
+            filteredCount={filteredCount}
+            doneCount={doneCount}
+            totalCount={totalCount}
+            {...defaults(footer)}
+          />
+        )}
       </section>
     );
   }
 }
 
 MainSection.propTypes = {
-  todos: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
+  todos: PropTypes.array.isRequired,
+  filter: PropTypes.string.isRequired,
+
+  section: PropTypes.shape({ children: PropTypes.shape({
+    ToggleAllDone: PropTypes.object,
+    TodoList: PropTypes.object,
+    Footer: PropTypes.object,
+  }) }),
 };
+
+MainSection.defaultProps = defaultProps;

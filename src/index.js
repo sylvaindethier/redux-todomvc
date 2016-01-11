@@ -11,18 +11,18 @@ import configureStore from './store/configureStore';
 const todos = [
   {
     text: 'initial: Use Redux',
-    isDone: true,
+    done: true,
     id: 0,
   },
   {
     text: 'initial: Learn to connect it to React',
-    isDone: false,
+    done: false,
     id: 1,
   },
 ];
-const filters = ['NONE'];
+const filter = 'NONE';
 
-const initialState = { todos, filters };
+const initialState = { todos, filter };
 const store = configureStore(initialState);
 render(
   <Provider store={store}>
