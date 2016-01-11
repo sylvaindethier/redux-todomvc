@@ -10,14 +10,24 @@ import configureStore from './store/configureStore';
 // initial todos
 const todos = [
   {
-    text: 'initial: Use Redux',
+    text: 'Use Redux',
     done: true,
     id: 0,
   },
   {
-    text: 'initial: Learn to connect it to React',
-    done: false,
+    text: 'Learn to connect it to React',
+    done: true,
     id: 1,
+  },
+  {
+    text: 'Make that Todo app a real-world example',
+    done: false,
+    id: 2,
+  },
+  {
+    text: 'Implement drag n\' drop on Todo items',
+    done: false,
+    id: 3,
   },
 ];
 const filter = 'NONE';
