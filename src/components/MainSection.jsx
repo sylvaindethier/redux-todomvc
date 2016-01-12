@@ -1,22 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { MainSection as defaultProps, defaultProps as defaults } from './defaultProps';
+import { filterDone } from '../model';
 import ToggleAllDone from './actions/ToggleAllDone';
 import TodoList from './TodoList';
 import Footer from './Footer';
 
 
-import { NONE, DONE, TODO } from '../constants/filters';
-const filterCallbacks = {
-  [NONE]: () => true,
-  [DONE]: todo => todo.done,
-  [TODO]: todo => !todo.done,
-};
-
-
 export default class MainSection extends Component {
   render() {
     const { actions, todos, filter } = this.props;
-    const filtered = todos.filter(filterCallbacks[filter]);
+    const filtered = todos.filter(filterDone(filter));
     const totalCount = todos.length;
     const doneCount = todos.reduce((count, todo) =>
       todo.done ? count + 1 : count,

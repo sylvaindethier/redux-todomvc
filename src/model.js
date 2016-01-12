@@ -1,4 +1,5 @@
 import { uuid } from './utils';
+import { NONE, DONE, TODO } from './constants/filters';
 
 export function create(text) {
   return {
@@ -20,10 +21,22 @@ export function toggleDone(todo) {
   return updateDone(todo, !todo.done);
 }
 
+export const doneFilters = {
+  [NONE]: () => true,
+  [DONE]: todo => todo.done,
+  [TODO]: todo => !todo.done,
+};
+
+export function filterDone(filter) {
+  return doneFilters[filter] ? doneFilters[filter] : doneFilters[NONE];
+}
+
 
 export default {
   create,
   updateText,
   updateDone,
   toggleDone,
+  doneFilters,
+  filterDone,
 };
