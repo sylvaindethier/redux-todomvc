@@ -4,5 +4,5 @@ import {
   FILTER,
 } from '../constants/actions';
 
-// fliter payload: filters
-export const filter = createAction(FILTER, filters => filters);
+// filter payload: filter name
+export const filter = createAction(FILTER, name => name);

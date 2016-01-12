@@ -13,11 +13,16 @@ class App extends Component {
   render() {
     // <MainSection todos={todos} actions={actions} />
     // Injected by connect() call:
-    const { actions, todos, filter } = this.props;
+    const { actions, todos, filter, editing } = this.props;
     return (
       <div>
         <Header actions={actions} />
-        <MainSection actions={actions} todos={todos} filter={filter} />
+        <MainSection
+          actions={actions}
+          todos={todos}
+          filter={filter}
+          editing={editing}
+        />
       </div>
     );
   }
@@ -33,12 +38,18 @@ App.propTypes = {
   }).isRequired).isRequired,
 
   filter: PropTypes.string.isRequired,
+
+  editing: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool,
+  ]).isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     todos: state.todos,
     filter: state.filter,
+    editing: state.editing,
   };
 }
 

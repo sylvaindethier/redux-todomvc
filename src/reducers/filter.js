@@ -1,9 +1,9 @@
 // initialize w/ NONE filters
 import { NONE } from '../constants/filters';
-const initialState = [NONE];
+const initialState = NONE;
 
 function createReducer(handlers) {
-  return function filters(state = initialState, action) {
+  return function filter(state = initialState, action) {
     if (handlers.hasOwnProperty(action.type)) {
       return handlers[action.type](state, action);
     }

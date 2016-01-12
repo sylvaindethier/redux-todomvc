@@ -30,8 +30,9 @@ const todos = [
   },
 ];
 const filter = 'NONE';
+const editing = false;
 
-const initialState = { todos, filter };
+const initialState = { todos, filter, editing };
 const store = configureStore(initialState);
 render(
   <Root store={store} />,

@@ -3,7 +3,7 @@ import { TodoList as defaultProps, defaultProps as defaults } from './defaultPro
 import Todo from './Todo';
 
 
-// TODO: remove statefrom this component
+// TODO: remove state from this component
 function buildState(editing) { return { editing }; }
 
 
