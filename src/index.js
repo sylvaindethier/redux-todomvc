@@ -1,9 +1,8 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
 // containers and store
-import App from './containers/App';
+import Root from './containers/Root';
 import configureStore from './store/configureStore';
 
 
@@ -35,8 +34,6 @@ const filter = 'NONE';
 const initialState = { todos, filter };
 const store = configureStore(initialState);
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Root store={store} />,
   document.getElementById('root')
 );

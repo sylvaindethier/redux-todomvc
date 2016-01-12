@@ -1,9 +1,8 @@
-// TODO: Use html-webpack-plugin to generate HTML files
-// TODO: https://github.com/ampedandwired/html-webpack-plugin
-
-
 import webpack from 'webpack';
 import { resolve } from 'path';
+
+// TODO: Use html-webpack-plugin to generate HTML files
+// TODO: https://github.com/ampedandwired/html-webpack-plugin
 
 const srcPath = resolve(__dirname, 'src');
 const distPath = resolve(__dirname, 'public');
@@ -17,7 +16,6 @@ function isDEV(env) {
 function isTEST(env) {
   return env === 'test';
 }
-
 
 function getEntry(/* env */) {
   const entry = {
