@@ -1,3 +1,5 @@
+import model from '../model';
+
 // initialize w/ empty collection (array)
 const initialState = [];
 
@@ -15,24 +17,15 @@ function createReducer(handlers) {
 export default createReducer({
   CREATE_TEXT(state, action) {
     const text = action.payload;
-    return [
-      // prepend new todo item
-      {
-        id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
-        done: false,
-        text,
-      },
-      ...state,
-    ];
+    // prepend new todo to state
+    return [model.create(text), ...state];
   },
 
   UPDATE_TODO_TEXT(state, action) {
     const { id, text } = action.payload;
     // state w/ modified text todo item
     return state.map(todo =>
-      todo.id === id ?
-        Object.assign({}, todo, { text }) :
-        todo
+      todo.id === id ? model.updateText(todo, text) : todo
     );
   },
 
@@ -56,17 +49,13 @@ export default createReducer({
     const id = action.payload;
     // state w/ toggled completed todo item
     return state.map(todo =>
-      todo.id === id ?
-        Object.assign({}, todo, { done: !todo.done }) :
-        todo
+      todo.id === id ? model.toggleDone(todo) : todo
     );
   },
 
   TOGGLE_ALL_DONE(state) {
     const areAllDone = state.every(todo => todo.done);
     // state w/ modified completed todos
-    return state.map(todo => Object.assign({}, todo, {
-      done: !areAllDone,
-    }));
+    return state.map(todo => model.updateDone(todo, !areAllDone));
   },
 });
