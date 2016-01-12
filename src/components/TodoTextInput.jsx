@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { TodoTextInput as defaultProps, defaultProps as defaults } from './defaultProps';
 
 
-const ENTER_KEYCODE = 13;
+const KEYCODE_ENTER = 13;
+const KEYCODE_ESC = 27;
 function buildState(value) { return { value }; }
 
 
@@ -17,18 +18,27 @@ export default class TodoTextInput extends Component {
     this.handleBlur = this.handleBlur.bind(this);
   }
 
+  _resetState() {
+    // set state w/ initial value
+    this.setState(buildState(this.props.value));
+  }
+
   handleSave(e) {
     const text = e.target.value.trim();
     this.props.saveText(text);
   }
 
   handleKeyDown(e) {
-    if (e.which === ENTER_KEYCODE) {
+    if (e.which === KEYCODE_ESC) {
+      // reset state and save initial value
+      this._resetState();
+      this.props.saveText(this.props.value);
+    } else if (e.which === KEYCODE_ENTER) {
       // save on ENTER
       this.handleSave(e);
       if (this.props.isNew) {
         // and reset for new todo
-        this.setState(buildState(this.props.value));
+        this._resetState();
       }
     }
   }
