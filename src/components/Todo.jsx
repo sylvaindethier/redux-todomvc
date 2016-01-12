@@ -5,6 +5,7 @@ import ToggleTodoDone from './actions/ToggleTodoDone';
 import DeleteTodo from './actions/DeleteTodo';
 
 
+// TODO: remove state from this component
 function buildState(editing) { return { editing }; }
 
 

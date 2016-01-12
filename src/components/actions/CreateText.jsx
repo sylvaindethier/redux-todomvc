@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { CreateText as defaultProps, defaultProps as defaults } from '../defaultProps';
 import TodoTextInput from '../TodoTextInput';
 
+
 export default class CreateText extends Component {
   constructor(props, context) {
     super(props, context);

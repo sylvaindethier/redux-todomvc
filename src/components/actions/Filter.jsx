@@ -5,10 +5,10 @@ import { Filter as defaultProps, defaultProps as defaults } from '../defaultProp
 export default class Filter extends Component {
   constructor(props, context) {
     super(props, context);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
-  handleClick(/* e */) {
+  handleFilter(/* e */) {
     const { filterAction, filter } = this.props;
     filterAction(filter);
   }
@@ -23,7 +23,7 @@ export default class Filter extends Component {
     return (
       <a
         style={{ cursor: 'pointer' }}
-        onClick={this.handleClick}
+        onClick={this.handleFilter}
         {...defaults(el, this.props)}
       />
     );

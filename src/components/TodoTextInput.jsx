@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { TodoTextInput as defaultProps, defaultProps as defaults } from './defaultProps';
-
-
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESC = 27;
+
+// TODO: remove state from this component
+// TODO: but for now it's fine as it doesn't interact w/ other component
+
 function buildState(value) { return { value }; }
 
 

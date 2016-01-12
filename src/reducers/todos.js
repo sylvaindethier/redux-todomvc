@@ -1,4 +1,4 @@
-import model from '../model';
+import { create, updateText, toggleDone, updateDone } from '../model';
 
 // initialize w/ empty collection (array)
 const initialState = [];
@@ -18,14 +18,14 @@ export default createReducer({
   CREATE_TEXT(state, action) {
     const text = action.payload;
     // prepend new todo to state
-    return [model.create(text), ...state];
+    return [create(text), ...state];
   },
 
   UPDATE_TODO_TEXT(state, action) {
     const { id, text } = action.payload;
     // state w/ modified text todo item
     return state.map(todo =>
-      todo.id === id ? model.updateText(todo, text) : todo
+      todo.id === id ? updateText(todo, text) : todo
     );
   },
 
@@ -49,13 +49,13 @@ export default createReducer({
     const id = action.payload;
     // state w/ toggled completed todo item
     return state.map(todo =>
-      todo.id === id ? model.toggleDone(todo) : todo
+      todo.id === id ? toggleDone(todo) : todo
     );
   },
 
   TOGGLE_ALL_DONE(state) {
     const areAllDone = state.every(todo => todo.done);
     // state w/ modified completed todos
-    return state.map(todo => model.updateDone(todo, !areAllDone));
+    return state.map(todo => updateDone(todo, !areAllDone));
   },
 });

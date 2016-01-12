@@ -5,10 +5,10 @@ import { ToggleTodoDone as defaultProps, defaultProps as defaults } from '../def
 export default class ToggleTodoDone extends Component {
   constructor(props, context) {
     super(props, context);
-    this.handleToggle = this.handleToggle.bind(this);
+    this.handleToggleTodoDone = this.handleToggleTodoDone.bind(this);
   }
 
-  handleToggle(/* e */) {
+  handleToggleTodoDone(/* e */) {
     const { todo, toggleTodoDoneAction } = this.props;
     toggleTodoDoneAction(todo.id);
   }
@@ -19,7 +19,7 @@ export default class ToggleTodoDone extends Component {
       <input
         type="checkbox"
         checked={todo.done}
-        onChange={this.handleToggle}
+        onChange={this.handleToggleTodoDone}
         {...defaults(input)}
       />
     );

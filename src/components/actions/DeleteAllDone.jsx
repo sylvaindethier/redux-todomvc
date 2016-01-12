@@ -3,10 +3,14 @@ import { DeleteAllDone as defaultProps, defaultProps as defaults } from '../defa
 
 
 export default class DeleteAllDone extends Component {
+  // we don't need to define an 'handleDeleteAllDone' as event is not used
   render() {
     const { deleteAllDoneAction, button } = this.props;
     return (
-      <button onClick={deleteAllDoneAction} {...defaults(button)} />
+      <button
+        onClick={deleteAllDoneAction}
+        {...defaults(button)}
+      />
     );
   }
 }

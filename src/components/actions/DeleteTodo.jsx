@@ -5,10 +5,10 @@ import { DeleteTodo as defaultProps, defaultProps as defaults } from '../default
 export default class DeleteTodo extends Component {
   constructor(props, context) {
     super(props, context);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
   }
 
-  handleDelete(/* e */) {
+  handleDeleteTodo(/* e */) {
     const { deleteTodoAction, todo } = this.props;
     deleteTodoAction(todo.id);
   }
@@ -17,7 +17,7 @@ export default class DeleteTodo extends Component {
     const { button } = this.props;
     return (
       <button
-        onClick={this.handleDelete}
+        onClick={this.handleDeleteTodo}
         {...defaults(button)}
       />
     );
