@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { filter as filterPropTypes } from '../.propTypes';
+import { actions as actionsPropTypes, filter as filterPropTypes } from '../.propTypes';
 import { Filter as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 export default class Filter extends Component {
@@ -9,8 +9,8 @@ export default class Filter extends Component {
   }
 
   handleFilter(/* e */) {
-    const { filterAction, filter } = this.props;
-    filterAction(filter);
+    const { actions, filter } = this.props;
+    actions.filter(filter);
   }
 
   render() {
@@ -22,8 +22,8 @@ export default class Filter extends Component {
     }
     return (
       <a
-        style={{ cursor: 'pointer' }}
         onClick={this.handleFilter}
+        style={{ cursor: 'pointer' }}
         {...defaults(el, this.props)}
       />
     );
@@ -31,7 +31,7 @@ export default class Filter extends Component {
 }
 
 Filter.propTypes = {
-  filterAction: PropTypes.func.isRequired,
+  actions: actionsPropTypes,
   filter: filterPropTypes,
 
   isCurrent: PropTypes.bool,

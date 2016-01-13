@@ -28,7 +28,7 @@ export default class MainSection extends Component {
       <section {...section}>
         {!totalCount ? null : (
           <ToggleAllDone
-            toggleAllDoneAction={actions.toggleAllDone}
+            actions={actions}
             areAllDone={doneCount === totalCount}
             {...defaults(toggleAllDone)}
           />

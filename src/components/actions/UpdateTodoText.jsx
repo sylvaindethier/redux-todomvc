@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { todo as todoPropTypes } from '../.propTypes';
+import { actions as actionsPropTypes, todo as todoPropTypes } from '../.propTypes';
 import { UpdateTodoText as defaultProps, defaultProps as defaults } from '../.defaultProps';
 import TodoTextInput from '../TodoTextInput';
 
@@ -11,19 +11,15 @@ export default class UpdateTodoText extends Component {
   }
 
   saveText(text) {
-    const { todo,
-      updateTodoTextAction,
-      handleUpdateEnd,
-      deleteTodoAction,
-    } = this.props;
+    const { actions, todo, handleUpdateEnd } = this.props;
     const id = todo.id;
 
     if (text && text.length) {
       // update only if text has changed
-      if (text !== todo.text) updateTodoTextAction(id, text);
+      if (text !== todo.text) actions.updateTodoText(id, text);
       if (handleUpdateEnd) handleUpdateEnd();
-    } else if (!text.length && deleteTodoAction) {
-      deleteTodoAction(id);
+    } else if (!text.length) {
+      actions.deleteTodo(id);
       if (handleUpdateEnd) handleUpdateEnd();
     }
   }
@@ -41,11 +37,10 @@ export default class UpdateTodoText extends Component {
 }
 
 UpdateTodoText.propTypes = {
+  actions: actionsPropTypes,
   todo: todoPropTypes,
-  updateTodoTextAction: PropTypes.func.isRequired,
 
   handleUpdateEnd: PropTypes.func,
-  deleteTodoAction: PropTypes.func,
   TodoTextInput: PropTypes.object,
 };
 

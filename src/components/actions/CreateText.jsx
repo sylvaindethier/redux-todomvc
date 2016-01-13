@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import { actions as actionsPropTypes } from '../.propTypes';
 import { CreateText as defaultProps, defaultProps as defaults } from '../.defaultProps';
 import TodoTextInput from '../TodoTextInput';
 
@@ -10,9 +11,9 @@ export default class CreateText extends Component {
   }
 
   createText(text) {
-    const { createTextAction } = this.props;
+    const { actions } = this.props;
     if (text && text.length !== 0) {
-      createTextAction(text);
+      actions.createText(text);
     }
   }
 
@@ -28,7 +29,7 @@ export default class CreateText extends Component {
 }
 
 CreateText.propTypes = {
-  createTextAction: PropTypes.func.isRequired,
+  actions: actionsPropTypes,
 
   TodoTextInput: PropTypes.object,
 };

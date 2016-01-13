@@ -12,7 +12,7 @@ export default class Header extends Component {
       <header {...defaults(header)}>
         <h1 {...defaults(h1)} />
         <CreateText
-          createTextAction={actions.createText}
+          actions={actions}
           {...defaults(createText)}
         />
       </header>

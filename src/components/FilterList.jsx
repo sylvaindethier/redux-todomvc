@@ -16,7 +16,7 @@ export default class FilterList extends Component {
         {filters.map(filtr =>
           <li key={filtr} {...defaults(li)}>
             <Filter
-              filterAction={actions.filter}
+              actions={actions}
               filter={filtr}
               isCurrent={filtr === current}
               {...defaults(filter)}

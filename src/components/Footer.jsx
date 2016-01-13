@@ -25,7 +25,7 @@ export default class Footer extends Component {
         />
       {doneCount < 1 ? null : (
         <DeleteAllDone
-          deleteAllDoneAction={actions.deleteAllDone}
+          actions={actions}
           {...defaults(deleteAllDone)}
         />
       )}
