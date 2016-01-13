@@ -25,6 +25,10 @@ export const CreateText = {
   }),
 };
 
+export const EditTodo = {
+  // label: {},
+};
+
 export const UpdateTodoText = {
   TodoTextInput: Object.assign({}, TodoTextInput, {
     input: {
@@ -132,7 +136,7 @@ export const Todo = {
     className: 'view',
     children: {
       // ToggleTodoDone: {},
-      // label: {},
+      // EditTodo: {},
       // DeleteTodo: {},
     },
   },

@@ -6,6 +6,7 @@ import {
 } from './.propTypes';
 import { Todo as defaultProps, defaultProps as defaults } from './.defaultProps';
 import UpdateTodoText from './actions/UpdateTodoText';
+import EditTodo from './actions/EditTodo';
 import ToggleTodoDone from './actions/ToggleTodoDone';
 import DeleteTodo from './actions/DeleteTodo';
 
@@ -15,13 +16,7 @@ export default class Todo extends Component {
     super(props, context);
 
     // bind handlers as there's no auto binding in Component class
-    this.handleEdit = this.handleEdit.bind(this);
     this.handleEditEnd = this.handleEditEnd.bind(this);
-  }
-
-  handleEdit(/* e */) {
-    const { actions, todo } = this.props;
-    actions.editTodo(todo.id);
   }
 
   handleEditEnd() {
@@ -38,9 +33,8 @@ export default class Todo extends Component {
     if (editing) {
       return (
         <UpdateTodoText
+          actions={actions}
           todo={todo}
-          updateTodoTextAction={actions.updateTodoText}
-          deleteTodoAction={actions.deleteTodo}
           handleUpdateEnd={this.handleEditEnd}
           {...defaults(updateTodoText)}
         />
@@ -50,22 +44,24 @@ export default class Todo extends Component {
     const { div } = this.props;
     const {
       ToggleTodoDone: toggleTodoDone,
-      label,
       DeleteTodo: deleteTodo,
+      EditTodo: editTodo,
     } = div.children;
     return (
       <div {...defaults(div)}>
         <ToggleTodoDone
+          actions={actions}
           todo={todo}
-          toggleTodoDoneAction={actions.toggleTodoDone}
           {...defaults(toggleTodoDone)}
         />
-        <label onDoubleClick={this.handleEdit} {...defaults(label)}>
-          {todo.text}
-        </label>
-        <DeleteTodo
+        <EditTodo
+          actions={actions}
           todo={todo}
-          deleteTodoAction={actions.deleteTodo}
+          {...defaults(editTodo)}
+        />
+        <DeleteTodo
+          actions={actions}
+          todo={todo}
           {...defaults(deleteTodo)}
         />
       </div>
