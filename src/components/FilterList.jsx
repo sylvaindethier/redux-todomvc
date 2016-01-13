@@ -1,13 +1,12 @@
 import React, { PropTypes, Component } from 'react';
-import { FilterList as defaultProps, defaultProps as defaults } from './defaultProps';
+import { actions as actionsPropTypes, filter as filterPropTypes } from './.propTypes';
+import { FilterList as defaultProps, defaultProps as defaults } from './.defaultProps';
 import Filter from './actions/Filter';
-import { NONE, DONE, TODO } from '../constants/filters';
-
+import { filters } from '../constants/filters';
 
 export default class FilterList extends Component {
   render() {
     const { actions, filter: current } = this.props;
-    const filters = [NONE, DONE, TODO];
 
     const { ul } = this.props;
     const { li } = ul.children;
@@ -30,8 +29,8 @@ export default class FilterList extends Component {
 }
 
 FilterList.propTypes = {
-  actions: PropTypes.object.isRequired,
-  filter: PropTypes.string.isRequired,
+  actions: actionsPropTypes,
+  filter: filterPropTypes,
 
   ul: PropTypes.shape({ children: PropTypes.shape({
     li: PropTypes.shape({ children: PropTypes.shape({
