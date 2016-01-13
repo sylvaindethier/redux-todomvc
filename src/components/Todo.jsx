@@ -12,18 +12,6 @@ import DeleteTodo from './actions/DeleteTodo';
 
 
 export default class Todo extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    // bind handlers as there's no auto binding in Component class
-    this.handleEditEnd = this.handleEditEnd.bind(this);
-  }
-
-  handleEditEnd() {
-    const { actions } = this.props;
-    actions.editTodo(false);
-  }
-
   render() {
     const { actions, todo, editing } = this.props;
 
@@ -35,7 +23,6 @@ export default class Todo extends Component {
         <UpdateTodoText
           actions={actions}
           todo={todo}
-          handleUpdateEnd={this.handleEditEnd}
           {...defaults(updateTodoText)}
         />
       );

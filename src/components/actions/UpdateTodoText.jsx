@@ -11,17 +11,17 @@ export default class UpdateTodoText extends Component {
   }
 
   saveText(text) {
-    const { actions, todo, handleUpdateEnd } = this.props;
+    const { actions, todo } = this.props;
     const id = todo.id;
 
-    if (text && text.length) {
+    if (text.length) {
       // update only if text has changed
       if (text !== todo.text) actions.updateTodoText(id, text);
-      if (handleUpdateEnd) handleUpdateEnd();
-    } else if (!text.length) {
+    } else {
+      // delete if text has been erased
       actions.deleteTodo(id);
-      if (handleUpdateEnd) handleUpdateEnd();
     }
+    actions.editTodo(false);
   }
 
   render() {
