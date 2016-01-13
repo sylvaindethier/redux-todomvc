@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { DeleteAll as defaultProps } from '../defaultProps';
+import { DeleteAll as defaultProps } from '../.defaultProps';
 
 
 export default class DeleteAll extends Component {

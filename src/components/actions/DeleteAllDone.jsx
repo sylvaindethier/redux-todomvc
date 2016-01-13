@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { DeleteAllDone as defaultProps, defaultProps as defaults } from '../defaultProps';
+import { DeleteAllDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
 export default class DeleteAllDone extends Component {

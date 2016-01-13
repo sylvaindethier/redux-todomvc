@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import { Header as defaultProps, defaultProps as defaults } from './defaultProps';
+import { actions as actionsPropTypes } from './.propTypes';
+import { Header as defaultProps, defaultProps as defaults } from './.defaultProps';
 import CreateText from './actions/CreateText';
 
 
@@ -20,7 +21,7 @@ export default class Header extends Component {
 }
 
 Header.propTypes = {
-  actions: PropTypes.object.isRequired,
+  actions: actionsPropTypes,
 
   header: PropTypes.shape({ children: PropTypes.shape({
     h1: PropTypes.object,

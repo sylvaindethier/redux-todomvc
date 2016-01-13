@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import { App as AppPropTypes } from '../components/.propTypes';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // actions
@@ -7,11 +8,10 @@ import Actions from '../actions';
 import Header from '../components/Header';
 import MainSection from '../components/MainSection';
 
-// import MainSection from '../components/MainSection';
 
+// we do NOT export this component, it has to be connected w/ react-redux
 class App extends Component {
   render() {
-    // <MainSection todos={todos} actions={actions} />
     // Injected by connect() call:
     const { actions, todos, filter, editing } = this.props;
     return (
@@ -28,22 +28,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
-  actions: PropTypes.object.isRequired,
-
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    text: PropTypes.string.isRequired,
-    done: PropTypes.bool.isRequired,
-  }).isRequired).isRequired,
-
-  filter: PropTypes.string.isRequired,
-
-  editing: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-  ]).isRequired,
-};
+App.propTypes = AppPropTypes;
 
 function mapStateToProps(state) {
   return {

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { ToggleTodoDone as defaultProps, defaultProps as defaults } from '../defaultProps';
+import { todo as todoPropTypes } from '../.propTypes';
+import { ToggleTodoDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
 export default class ToggleTodoDone extends Component {
@@ -28,7 +29,7 @@ export default class ToggleTodoDone extends Component {
 
 ToggleTodoDone.propTypes = {
   toggleTodoDoneAction: PropTypes.func.isRequired,
-  todo: PropTypes.object.isRequired,
+  todo: todoPropTypes,
 
   input: PropTypes.object,
 };

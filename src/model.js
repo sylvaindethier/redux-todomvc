@@ -1,6 +1,7 @@
 import { uuid } from './utils';
 import { NONE, DONE, TODO } from './constants/filters';
 
+
 export function create(text) {
   return {
     id: uuid(),

@@ -2,9 +2,12 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
 import logger from './middlewares/logger';
 
-function devToolsExtension() {
-  return typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ?
-    window.devToolsExtension() : f => f;
+
+function devToolsExtension(enable) {
+  const w = window;
+  const name = 'devToolsExtension';
+  return enable && typeof w === 'object' && typeof w[name] === 'function' ?
+    w[name]() : f => f;
 }
 
 const middlewares = [
@@ -15,7 +18,7 @@ const creators = [
   applyMiddleware(...middlewares),
 
   // Add browser DevTools extension if any
-  devToolsExtension(),
+  devToolsExtension(true),
 ];
 
 // const finalCreateStore = applyMiddleware(...middlewares)(createStore);

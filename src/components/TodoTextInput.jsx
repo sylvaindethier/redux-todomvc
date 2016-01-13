@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { TodoTextInput as defaultProps, defaultProps as defaults } from './defaultProps';
+import { TodoTextInput as defaultProps, defaultProps as defaults } from './.defaultProps';
 const KEYCODE_ENTER = 13;
 const KEYCODE_ESC = 27;
 

@@ -11,22 +11,22 @@ const todos = [
   {
     text: 'Use Redux',
     done: true,
-    id: 0,
+    id: '0',
   },
   {
     text: 'Learn to connect it to React',
     done: true,
-    id: 1,
+    id: '1',
   },
   {
     text: 'Make that Todo app a real-world example',
     done: false,
-    id: 2,
+    id: '2',
   },
   {
     text: 'Implement drag n\' drop on Todo items',
     done: false,
-    id: 3,
+    id: '3',
   },
 ];
 const filter = 'NONE';

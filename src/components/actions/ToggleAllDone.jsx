@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { ToggleAllDone as defaultProps, defaultProps as defaults } from '../defaultProps';
+import { ToggleAllDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
 export default class ToggleAllDone extends Component {

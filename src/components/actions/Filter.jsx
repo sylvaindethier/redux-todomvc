@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import { Filter as defaultProps, defaultProps as defaults } from '../defaultProps';
-
+import { filter as filterPropTypes } from '../.propTypes';
+import { Filter as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 export default class Filter extends Component {
   constructor(props, context) {
@@ -32,7 +32,7 @@ export default class Filter extends Component {
 
 Filter.propTypes = {
   filterAction: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
+  filter: filterPropTypes,
 
   isCurrent: PropTypes.bool,
   el: PropTypes.object,

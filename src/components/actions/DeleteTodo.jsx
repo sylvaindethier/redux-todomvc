@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { DeleteTodo as defaultProps, defaultProps as defaults } from '../defaultProps';
+import { DeleteTodo as defaultProps, defaultProps as defaults } from '../.defaultProps';
+import { todo as todoPropTypes } from '../.propTypes';
 
 
 export default class DeleteTodo extends Component {
@@ -26,7 +27,7 @@ export default class DeleteTodo extends Component {
 
 DeleteTodo.propTypes = {
   deleteTodoAction: PropTypes.func.isRequired,
-  todo: PropTypes.object.isRequired,
+  todo: todoPropTypes,
 
   button: PropTypes.object,
 };

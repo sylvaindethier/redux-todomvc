@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { CreateText as defaultProps, defaultProps as defaults } from '../defaultProps';
+import { CreateText as defaultProps, defaultProps as defaults } from '../.defaultProps';
 import TodoTextInput from '../TodoTextInput';
 
 

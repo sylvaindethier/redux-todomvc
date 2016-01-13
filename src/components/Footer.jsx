@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import { Footer as defaultProps, defaultProps as defaults } from './defaultProps';
+import { actions as actionsPropTypes, filter as filterPropTypes } from './.propTypes';
+import { Footer as defaultProps, defaultProps as defaults } from './.defaultProps';
 import FilterList from './FilterList';
 import DeleteAllDone from './actions/DeleteAllDone';
 
@@ -34,8 +35,8 @@ export default class Footer extends Component {
 }
 
 Footer.propTypes = {
-  actions: PropTypes.object.isRequired,
-  filter: PropTypes.string.isRequired,
+  actions: actionsPropTypes,
+  filter: filterPropTypes,
 
   totalCount: PropTypes.number,
   doneCount: PropTypes.number,

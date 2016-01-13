@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import { UpdateTodoText as defaultProps, defaultProps as defaults } from '../defaultProps';
+import { todo as todoPropTypes } from '../.propTypes';
+import { UpdateTodoText as defaultProps, defaultProps as defaults } from '../.defaultProps';
 import TodoTextInput from '../TodoTextInput';
 
 
@@ -40,7 +41,7 @@ export default class UpdateTodoText extends Component {
 }
 
 UpdateTodoText.propTypes = {
-  todo: PropTypes.object.isRequired,
+  todo: todoPropTypes,
   updateTodoTextAction: PropTypes.func.isRequired,
 
   handleUpdateEnd: PropTypes.func,
