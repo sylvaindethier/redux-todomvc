@@ -2,6 +2,7 @@
 import { createAction } from 'redux-actions';
 import {
   CREATE_TEXT,
+  EDIT_TODO,
   UPDATE_TODO_TEXT,
   DELETE_TODO,
   DELETE_ALL,
@@ -12,6 +13,9 @@ import {
 
 // createText payload: text
 export const createText = createAction(CREATE_TEXT, text => text);
+
+// editTodo payload: id
+export const editTodo = createAction(EDIT_TODO, id => id);
 
 // updateTodo payload: { id, text }
 export const updateTodoText = createAction(UPDATE_TODO_TEXT, (id, text) => ({ id, text }));

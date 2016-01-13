@@ -21,12 +21,12 @@ export default class Todo extends Component {
 
   handleEdit(/* e */) {
     const { actions, todo } = this.props;
-    actions.editing(todo.id);
+    actions.editTodo(todo.id);
   }
 
   handleEditEnd() {
     const { actions } = this.props;
-    actions.editing(false);
+    actions.editTodo(false);
   }
 
   render() {

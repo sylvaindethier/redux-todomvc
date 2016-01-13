@@ -12,8 +12,8 @@ function createReducer(handlers) {
 }
 
 export default createReducer({
-  EDITING(state, action) {
-    const editing = action.payload;
-    return editing;
+  EDIT_TODO(state, action) {
+    const id = action.payload;
+    return id;
   },
 });
