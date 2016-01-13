@@ -8,19 +8,25 @@ export default class UpdateTodoText extends Component {
   constructor(props, context) {
     super(props, context);
     this.saveText = this.saveText.bind(this);
+    this.cancel = this.cancel.bind(this);
   }
 
   saveText(text) {
     const { actions, todo } = this.props;
     const id = todo.id;
 
-    if (text.length) {
-      // update only if text has changed
-      if (text !== todo.text) actions.updateTodoText(id, text);
-    } else {
+    if (!text.length) {
       // delete if text has been erased
       actions.deleteTodo(id);
+    } else if (text !== todo.text) {
+      // update only if text has changed
+      actions.updateTodoText(id, text);
     }
+    actions.editTodo(false);
+  }
+
+  cancel() {
+    const { actions } = this.props;
     actions.editTodo(false);
   }
 
@@ -29,6 +35,7 @@ export default class UpdateTodoText extends Component {
     return (
       <TodoTextInput
         saveText={this.saveText}
+        cancel={this.cancel}
         value={todo.text}
         {...defaults(todoTextInput)}
       />
@@ -40,7 +47,6 @@ UpdateTodoText.propTypes = {
   actions: actionsPropTypes,
   todo: todoPropTypes,
 
-  handleUpdateEnd: PropTypes.func,
   TodoTextInput: PropTypes.object,
 };
 

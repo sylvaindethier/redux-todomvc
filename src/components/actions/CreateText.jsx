@@ -12,7 +12,7 @@ export default class CreateText extends Component {
 
   createText(text) {
     const { actions } = this.props;
-    if (text && text.length !== 0) {
+    if (text && text.length) {
       actions.createText(text);
     }
   }

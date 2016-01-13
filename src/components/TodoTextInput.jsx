@@ -25,23 +25,34 @@ export default class TodoTextInput extends Component {
     this.setState(buildState(this.props.value));
   }
 
-  handleSave(e) {
+  handleSaveText(e) {
+    if (this.props.isNew) {
+      // reset for new todo
+      this._resetState();
+    }
+    // save w/ input's value
     const text = e.target.value.trim();
     this.props.saveText(text);
   }
 
+  handleCancel(/* e */) {
+    this._resetState();
+    // cancel if any
+    if (this.props.cancel) this.props.cancel();
+  }
+
   handleKeyDown(e) {
-    if (e.which === KEYCODE_ESC) {
-      // reset state and save initial value
-      this._resetState();
-      this.props.saveText(this.props.value);
-    } else if (e.which === KEYCODE_ENTER) {
-      // save on ENTER
-      this.handleSave(e);
-      if (this.props.isNew) {
-        // and reset for new todo
-        this._resetState();
-      }
+    switch (e.which) {
+      case KEYCODE_ENTER:
+        this.handleSaveText(e);
+        break;
+
+      case KEYCODE_ESC:
+        this.handleCancel(e);
+        break;
+
+      default:
+        break;
     }
   }
 
@@ -52,7 +63,7 @@ export default class TodoTextInput extends Component {
   handleBlur(e) {
     if (!this.props.isNew) {
       // save only for non newTodo
-      this.handleSave(e);
+      this.handleSaveText(e);
     }
   }
 
@@ -75,6 +86,7 @@ export default class TodoTextInput extends Component {
 TodoTextInput.propTypes = {
   saveText: PropTypes.func.isRequired,
 
+  cancel: PropTypes.func,
   value: PropTypes.string,
   isNew: PropTypes.bool,
   input: PropTypes.object,
