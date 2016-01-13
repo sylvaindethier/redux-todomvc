@@ -2,6 +2,7 @@ import React, { PropTypes, Component } from 'react';
 import { actions as actionsPropTypes, filter as filterPropTypes } from '../.propTypes';
 import { Filter as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
+
 export default class Filter extends Component {
   constructor(props, context) {
     super(props, context);

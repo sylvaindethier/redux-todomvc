@@ -14,7 +14,7 @@ import {
 // createText payload: text
 export const createText = createAction(CREATE_TEXT, text => text);
 
-// editTodo payload: id
+// editTodo payload: id (could also be false if not editing, true if editing new todo)
 export const editTodo = createAction(EDIT_TODO, id => id);
 
 // updateTodo payload: { id, text }

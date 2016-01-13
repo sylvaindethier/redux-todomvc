@@ -1,6 +1,6 @@
-function preDispatch({ action, getState }) {
+function preDispatch({ action }) {
   console.groupCollapsed(action.type);
-  console.info('>>> dispatching', action, getState());
+  console.info('>>> dispatching', action);
 }
 
 function postDispatch({ action, getState }) {
