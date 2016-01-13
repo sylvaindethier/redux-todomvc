@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { MainSection as defaultProps, defaultProps as defaults } from './defaultProps';
+import { App as AppPropTypes } from './.propTypes';
+import { MainSection as defaultProps, defaultProps as defaults } from './.defaultProps';
 import { filterDone } from '../model';
 import ToggleAllDone from './actions/ToggleAllDone';
 import TodoList from './TodoList';
@@ -8,7 +9,7 @@ import Footer from './Footer';
 
 export default class MainSection extends Component {
   render() {
-    const { actions, todos, filter } = this.props;
+    const { actions, todos, filter, editing } = this.props;
     const filtered = todos.filter(filterDone(filter));
     const totalCount = todos.length;
     const doneCount = todos.reduce((count, todo) =>
@@ -16,7 +17,6 @@ export default class MainSection extends Component {
       0
     );
     const filteredCount = filtered.length;
-
 
     const { section } = this.props;
     const {
@@ -36,6 +36,7 @@ export default class MainSection extends Component {
         <TodoList
           actions={actions}
           todos={filtered}
+          editing={editing}
           {...defaults(todoList)}
         />
         {!totalCount ? null : (
@@ -53,16 +54,12 @@ export default class MainSection extends Component {
   }
 }
 
-MainSection.propTypes = {
-  actions: PropTypes.object.isRequired,
-  todos: PropTypes.array.isRequired,
-  filter: PropTypes.string.isRequired,
-
+MainSection.propTypes = Object.assign({}, AppPropTypes, {
   section: PropTypes.shape({ children: PropTypes.shape({
     ToggleAllDone: PropTypes.object,
     TodoList: PropTypes.object,
     Footer: PropTypes.object,
   }) }),
-};
+});
 
 MainSection.defaultProps = defaultProps;

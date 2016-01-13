@@ -1,18 +1,18 @@
 import React, { Component, PropTypes } from 'react';
-import { Todo as defaultProps, defaultProps as defaults } from './defaultProps';
+import {
+  actions as actionsPropTypes,
+  todo as todoPropTypes,
+  editing as editingPropTypes,
+} from './.propTypes';
+import { Todo as defaultProps, defaultProps as defaults } from './.defaultProps';
 import UpdateTodoText from './actions/UpdateTodoText';
 import ToggleTodoDone from './actions/ToggleTodoDone';
 import DeleteTodo from './actions/DeleteTodo';
 
 
-// TODO: remove state from this component
-function buildState(editing) { return { editing }; }
-
-
 export default class Todo extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = buildState(false);
 
     // bind handlers as there's no auto binding in Component class
     this.handleEdit = this.handleEdit.bind(this);
@@ -20,24 +20,22 @@ export default class Todo extends Component {
   }
 
   handleEdit(/* e */) {
-    const { setTodoEdit, todo } = this.props;
-    if (setTodoEdit) setTodoEdit(todo.id);
-    this.setState(buildState(true));
+    const { actions, todo } = this.props;
+    actions.editing(todo.id);
   }
 
   handleEditEnd() {
-    const { unsetTodoEdit } = this.props;
-    if (unsetTodoEdit) unsetTodoEdit();
-    this.setState(buildState(false));
+    const { actions } = this.props;
+    actions.editing(false);
   }
 
   render() {
-    const { actions, todo } = this.props;
+    const { actions, todo, editing } = this.props;
 
     const {
       UpdateTodoText: updateTodoText,
     } = this.props;
-    if (this.state.editing) {
+    if (editing) {
       return (
         <UpdateTodoText
           todo={todo}
@@ -76,11 +74,10 @@ export default class Todo extends Component {
 }
 
 Todo.propTypes = {
-  actions: PropTypes.object.isRequired,
-  todo: PropTypes.object.isRequired,
+  actions: actionsPropTypes,
+  todo: todoPropTypes,
+  editing: editingPropTypes,
 
-  setTodoEdit: PropTypes.func,
-  unsetTodoEdit: PropTypes.func,
   UpdateTodoText: PropTypes.object,
   div: PropTypes.shape({ children: PropTypes.shape({
     ToggleTodoDone: PropTypes.object,
