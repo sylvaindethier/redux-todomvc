@@ -1,19 +1,16 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { actions as actionsPropTypes } from '../.propTypes';
 import { DeleteAllDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
-export default class DeleteAllDone extends Component {
-  // we don't need to define an 'handleDeleteAllDone' as event is useless
-  render() {
-    const { actions, button } = this.props;
-    return (
-      <button
-        onClick={actions.deleteAllDone}
-        {...defaults(button)}
-      />
-    );
-  }
+export default function DeleteAllDone(props) {
+  const { actions, button } = props;
+  return (
+    <button
+      onClick={actions.deleteAllDone}
+      {...defaults(button)}
+    />
+  );
 }
 
 DeleteAllDone.propTypes = {

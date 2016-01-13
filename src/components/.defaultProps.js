@@ -26,7 +26,9 @@ export const CreateText = {
 };
 
 export const EditTodo = {
-  // label: {},
+  label: {
+    children: props => props.todo.text,
+  },
 };
 
 export const UpdateTodoText = {

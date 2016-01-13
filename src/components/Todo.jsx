@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import {
   actions as actionsPropTypes,
   todo as todoPropTypes,
@@ -11,49 +11,47 @@ import ToggleTodoDone from './actions/ToggleTodoDone';
 import DeleteTodo from './actions/DeleteTodo';
 
 
-export default class Todo extends Component {
-  render() {
-    const { actions, todo, editing } = this.props;
+export default function Todo(props) {
+  const { actions, todo, editing } = props;
 
-    const {
-      UpdateTodoText: updateTodoText,
-    } = this.props;
-    if (editing) {
-      return (
-        <UpdateTodoText
-          actions={actions}
-          todo={todo}
-          {...defaults(updateTodoText)}
-        />
-      );
-    }
-
-    const { div } = this.props;
-    const {
-      ToggleTodoDone: toggleTodoDone,
-      DeleteTodo: deleteTodo,
-      EditTodo: editTodo,
-    } = div.children;
+  const {
+    UpdateTodoText: updateTodoText,
+  } = props;
+  if (editing) {
     return (
-      <div {...defaults(div)}>
-        <ToggleTodoDone
-          actions={actions}
-          todo={todo}
-          {...defaults(toggleTodoDone)}
-        />
-        <EditTodo
-          actions={actions}
-          todo={todo}
-          {...defaults(editTodo)}
-        />
-        <DeleteTodo
-          actions={actions}
-          todo={todo}
-          {...defaults(deleteTodo)}
-        />
-      </div>
+      <UpdateTodoText
+        actions={actions}
+        todo={todo}
+        {...defaults(updateTodoText)}
+      />
     );
   }
+
+  const { div } = props;
+  const {
+    ToggleTodoDone: toggleTodoDone,
+    DeleteTodo: deleteTodo,
+    EditTodo: editTodo,
+  } = div.children;
+  return (
+    <div {...defaults(div)}>
+      <ToggleTodoDone
+        actions={actions}
+        todo={todo}
+        {...defaults(toggleTodoDone)}
+      />
+      <EditTodo
+        actions={actions}
+        todo={todo}
+        {...defaults(editTodo)}
+      />
+      <DeleteTodo
+        actions={actions}
+        todo={todo}
+        {...defaults(deleteTodo)}
+      />
+    </div>
+  );
 }
 
 Todo.propTypes = {

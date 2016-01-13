@@ -1,37 +1,36 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { actions as actionsPropTypes, filter as filterPropTypes } from './.propTypes';
 import { Footer as defaultProps, defaultProps as defaults } from './.defaultProps';
 import FilterList from './FilterList';
 import DeleteAllDone from './actions/DeleteAllDone';
 
-export default class Footer extends Component {
-  render() {
-    const { actions, filter, totalCount, doneCount, filteredCount } = this.props;
-    const leftCount = totalCount - doneCount;
 
-    const { footer } = this.props;
-    const {
-      span,
-      FilterList: filterList,
-      DeleteAllDone: deleteAllDone,
-    } = footer.children;
-    return (
-      <footer {...defaults(footer)}>
-        <span {...defaults(span, leftCount, totalCount, filteredCount)} />
-        <FilterList
-          actions={actions}
-          filter={filter}
-          {...defaults(filterList)}
-        />
-      {doneCount < 1 ? null : (
-        <DeleteAllDone
-          actions={actions}
-          {...defaults(deleteAllDone)}
-        />
-      )}
-      </footer>
-    );
-  }
+export default function Footer(props) {
+  const { actions, filter, totalCount, doneCount, filteredCount } = props;
+  const leftCount = totalCount - doneCount;
+
+  const { footer } = props;
+  const {
+    span,
+    FilterList: filterList,
+    DeleteAllDone: deleteAllDone,
+  } = footer.children;
+  return (
+    <footer {...defaults(footer)}>
+      <span {...defaults(span, leftCount, totalCount, filteredCount)} />
+      <FilterList
+        actions={actions}
+        filter={filter}
+        {...defaults(filterList)}
+      />
+    {doneCount < 1 ? null : (
+      <DeleteAllDone
+        actions={actions}
+        {...defaults(deleteAllDone)}
+      />
+    )}
+    </footer>
+  );
 }
 
 Footer.propTypes = {

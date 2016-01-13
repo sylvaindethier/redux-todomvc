@@ -1,30 +1,25 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { actions as actionsPropTypes, todo as todoPropTypes } from '../.propTypes';
 import { ToggleTodoDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
-export default class ToggleTodoDone extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.handleToggleTodoDone = this.handleToggleTodoDone.bind(this);
-  }
-
-  handleToggleTodoDone(/* e */) {
-    const { actions, todo } = this.props;
+function toggleAllDoneHandler(props) {
+  return function handleToggleTodoDone(/* e */) {
+    const { actions, todo } = props;
     actions.toggleTodoDone(todo.id);
-  }
+  };
+}
 
-  render() {
-    const { todo, input } = this.props;
-    return (
-      <input
-        onChange={this.handleToggleTodoDone}
-        type="checkbox"
-        checked={todo.done}
-        {...defaults(input)}
-      />
-    );
-  }
+export default function ToggleTodoDone(props) {
+  const { todo, input } = props;
+  return (
+    <input
+      onChange={toggleAllDoneHandler(props)}
+      type="checkbox"
+      checked={todo.done}
+      {...defaults(input)}
+    />
+  );
 }
 
 ToggleTodoDone.propTypes = {

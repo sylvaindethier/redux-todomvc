@@ -1,31 +1,30 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { actions as actionsPropTypes, filter as filterPropTypes } from './.propTypes';
 import { FilterList as defaultProps, defaultProps as defaults } from './.defaultProps';
 import Filter from './actions/Filter';
 import { filters } from '../constants/filters';
 
-export default class FilterList extends Component {
-  render() {
-    const { actions, filter: current } = this.props;
 
-    const { ul } = this.props;
-    const { li } = ul.children;
-    const { Filter: filter } = li.children;
-    return (
-      <ul {...ul}>
-        {filters.map(filtr =>
-          <li key={filtr} {...defaults(li)}>
-            <Filter
-              actions={actions}
-              filter={filtr}
-              isCurrent={filtr === current}
-              {...defaults(filter)}
-            />
-          </li>
-        )}
-      </ul>
-    );
-  }
+export default function FilterList(props) {
+  const { actions, filter: current } = props;
+
+  const { ul } = props;
+  const { li } = ul.children;
+  const { Filter: filter } = li.children;
+  return (
+    <ul {...ul}>
+      {filters.map(filtr =>
+        <li key={filtr} {...defaults(li)}>
+          <Filter
+            actions={actions}
+            filter={filtr}
+            isCurrent={filtr === current}
+            {...defaults(filter)}
+          />
+        </li>
+      )}
+    </ul>
+  );
 }
 
 FilterList.propTypes = {

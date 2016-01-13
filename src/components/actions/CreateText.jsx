@@ -1,31 +1,26 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { actions as actionsPropTypes } from '../.propTypes';
 import { CreateText as defaultProps, defaultProps as defaults } from '../.defaultProps';
 import TodoTextInput from '../TodoTextInput';
 
 
-export default class CreateText extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.createText = this.createText.bind(this);
-  }
-
-  createText(text) {
-    const { actions } = this.props;
+function createTextHandler(props) {
+  const { actions } = props;
+  return function createText(text) {
     if (text && text.length) {
       actions.createText(text);
     }
-  }
+  };
+}
 
-  render() {
-    const { TodoTextInput: todoTextInput } = this.props;
-    return (
-      <TodoTextInput
-        saveText={this.createText}
-        {...defaults(todoTextInput)}
-      />
-    );
-  }
+export default function CreateText(props) {
+  const { TodoTextInput: todoTextInput } = props;
+  return (
+    <TodoTextInput
+      saveText={createTextHandler(props)}
+      {...defaults(todoTextInput)}
+    />
+  );
 }
 
 CreateText.propTypes = {

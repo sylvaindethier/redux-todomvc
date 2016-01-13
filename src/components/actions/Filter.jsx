@@ -1,34 +1,29 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { actions as actionsPropTypes, filter as filterPropTypes } from '../.propTypes';
 import { Filter as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
-export default class Filter extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.handleFilter = this.handleFilter.bind(this);
-  }
-
-  handleFilter(/* e */) {
-    const { actions, filter } = this.props;
+function filterHandler(props) {
+  return function handleFilter(/* e */) {
+    const { actions, filter } = props;
     actions.filter(filter);
-  }
+  };
+}
 
-  render() {
-    const { isCurrent, el } = this.props;
-    if (isCurrent) {
-      return (
-        <span {...defaults(el, this.props)} />
-      );
-    }
+export default function Filter(props) {
+  const { isCurrent, el } = props;
+  if (isCurrent) {
     return (
-      <a
-        onClick={this.handleFilter}
-        style={{ cursor: 'pointer' }}
-        {...defaults(el, this.props)}
-      />
+      <span {...defaults(el, props)} />
     );
   }
+  return (
+    <a
+      onClick={filterHandler(props)}
+      style={{ cursor: 'pointer' }}
+      {...defaults(el, props)}
+    />
+  );
 }
 
 Filter.propTypes = {
