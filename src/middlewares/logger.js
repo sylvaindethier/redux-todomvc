@@ -1,10 +1,10 @@
 function preDispatch({ action }) {
   console.groupCollapsed(action.type);
-  console.info('>>> dispatching', action);
+  console.info('dispatching', action);
 }
 
 function postDispatch({ action, getState }) {
-  console.info('>>> next state', getState());
+  console.info('next state', getState());
   console.groupEnd(action.type);
 }
 
@@ -15,7 +15,6 @@ export default function logger({ getState, dispatch }) {
 
     // Call the next dispatch method in the middleware chain.
     const returnValue = next(action);
-
     logger.postDispatch({ getState, dispatch, next, action, returnValue });
 
     return returnValue;

@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
-import logger from './middlewares/logger';
+import saver from '../middlewares/saver';
+import logger from '../middlewares/logger';
 
 
 function devToolsExtension(enable) {
@@ -11,13 +12,14 @@ function devToolsExtension(enable) {
 }
 
 const middlewares = [
+  saver,
   logger,
 ];
 const creators = [
-  // Middleware you want to use in development:
+  // middlewares you want to use in development:
   applyMiddleware(...middlewares),
 
-  // Add browser DevTools extension if any
+  // add browser DevTools extension if any
   devToolsExtension(true),
 ];
 
