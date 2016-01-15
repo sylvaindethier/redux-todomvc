@@ -3,13 +3,13 @@ import { actions as actionsPropTypes, todo as todoPropTypes } from '../.propType
 import { EditableTodoText as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
-// function editTodoTextAction(props) {
+// function editTodoTextAction({ props }) {
 //   const { actions, todo } = props;
 //   actions.editTodoText(todo);
 // }
 function editTodoTextHandler(props) {
   return function handleDoubleClick(/* e */) {
-    // editTodoTextAction(props);
+    // editTodoTextAction({ props });
     const { actions, todo } = props;
     actions.editTodoText(todo);
   };

@@ -3,13 +3,13 @@ import { actions as actionsPropTypes, todo as todoPropTypes } from '../.propType
 import { ToggleTodoDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
-// function toggleTodoDoneAction(props) {
+// function toggleTodoDoneAction({ props }) {
 //   const { actions, todo } = props;
 //   actions.toggleTodoDone(todo.id);
 // }
 function toggleTodoDoneHandler(props) {
   return function handleChange(/* e */) {
-    // toggleTodoDoneAction(props);
+    // toggleTodoDoneAction({ props });
     const { actions, todo } = props;
     actions.toggleTodoDone(todo.id);
   };
