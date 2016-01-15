@@ -28,7 +28,7 @@ function saveTextProps(props, { e }) {
 function blurHandler(props) {
   return function handleBlur(e) {
     // save on blur for non new Todo (already created)
-    if (props.isNew) saveTextProps(props, { e });
+    if (!props.isNew) saveTextProps(props, { e });
   };
 }
 
