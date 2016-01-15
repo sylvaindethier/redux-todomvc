@@ -30,7 +30,7 @@ const todos = [
   },
 ];
 const filter = 'NONE';
-const editing = false;
+const editing = { id: '', text: '' };
 
 const initialState = { todos, filter, editing };
 const store = configureStore(initialState);

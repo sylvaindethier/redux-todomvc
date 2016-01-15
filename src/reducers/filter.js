@@ -14,7 +14,7 @@ function createReducer(handlers) {
 
 export default createReducer({
   FILTER(state, action) {
-    const filter = action.payload;
-    return filter;
+    const name = action.payload;
+    return name;
   },
 });

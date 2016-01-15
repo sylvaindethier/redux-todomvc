@@ -5,6 +5,7 @@ const initialState = [];
 
 function createReducer(handlers) {
   return function todos(state = initialState, action) {
+    // call handler if exists
     if (handlers.hasOwnProperty(action.type)) {
       return handlers[action.type](state, action);
     }
@@ -16,7 +17,7 @@ function createReducer(handlers) {
 
 export default createReducer({
   CREATE_TEXT(state, action) {
-    const text = action.payload;
+    const { text } = action.payload;
     // prepend new todo to state
     return [create(text), ...state];
   },
@@ -30,7 +31,7 @@ export default createReducer({
   },
 
   DELETE_TODO(state, action) {
-    const id = action.payload;
+    const { id } = action.payload;
     // state minus todo item
     return state.filter(todo => todo.id !== id);
   },
@@ -46,7 +47,7 @@ export default createReducer({
   },
 
   TOGGLE_TODO_DONE(state, action) {
-    const id = action.payload;
+    const { id } = action.payload;
     // state w/ toggled completed todo item
     return state.map(todo =>
       todo.id === id ? toggleDone(todo) : todo
