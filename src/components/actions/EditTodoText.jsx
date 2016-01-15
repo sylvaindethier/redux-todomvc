@@ -1,4 +1,4 @@
-import React, { PropTypes, Component } from 'react';
+import React, { PropTypes } from 'react';
 import { actions as actionsPropTypes, editing as editingPropTypes } from '../.propTypes';
 import { EditTodoText as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
@@ -6,77 +6,68 @@ const KEYCODE_ESC = 27;
 const KEYCODE_ENTER = 13;
 
 
-export default class EditTodoText extends Component {
-  constructor(props, context) {
-    super(props, context);
+// function editTodoTextAction(props, { id, text }) {
+//   const { actions } = props;
+//   actions.editTodoText({ id, text });
+// }
 
-    // bind event handlers to this (no auto binding in Component)
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
-  }
+// function cancelEditTodoTextAction(props) {
+//   // call cancelEditTodoText action
+//   const { actions } = props;
+//   actions.cancelEditTodoText();
+// }
 
-  _saveText({ text }) {
-    const { isNew, saveText } = this.props;
-    if (isNew) {
-      // reset for new todo
-      // this._resetState();
-    }
-    saveText({ text });
-    this.cancelEditTodoText();
-  }
+function saveTextProps(props, { e }) {
+  const { actions } = props;
+  const text = e.target.value.trim();
+  props.saveText({ text });
+  // cancelEditTodoTextAction(props);
+  actions.cancelEditTodoText();
+}
 
-  editTodoText({ id, text }) {
-    const { actions } = this.props;
-    actions.editTodoText({ id, text });
-  }
+function blurHandler(props) {
+  return function handleBlur(e) {
+    // save on blur for non new Todo (already created)
+    if (props.isNew) saveTextProps(props, { e });
+  };
+}
 
-  cancelEditTodoText() {
-    // this._resetState();
-    // call cancelEditTodoText action
-    const { actions } = this.props;
-    actions.cancelEditTodoText();
-  }
-
-  handleKeyDown(e) {
+function keydownHandler(props) {
+  return function handleKeyDown(e) {
+    const { actions } = props;
     const { which } = e;
 
     // save on ENTER
-    if (which === KEYCODE_ENTER) this.handleSave(e);
+    if (which === KEYCODE_ENTER) saveTextProps(props, { e });
     // cancel on ESC
-    if (which === KEYCODE_ESC) this.cancelEditTodoText();
-  }
+    if (which === KEYCODE_ESC) actions.cancelEditTodoText();
+  };
+}
 
-  handleChange(e) {
-    const { id } = this.props.editing;
+function changeHandler(props) {
+  return function handleChange(e) {
+    const { actions } = props;
+    const { id } = props.editing;
     const text = e.target.value;
-    this.editTodoText({ id, text });
-  }
+    // editTodoTextAction(props, { id, text });
+    actions.editTodoText({ id, text });
+  };
+}
 
-  handleBlur(e) {
-    // save on blur for non new Todo (already created)
-    if (!this.props.isNew) this.handleSave(e);
-  }
 
-  handleSave(e) {
-    const text = e.target.value.trim();
-    this._saveText({ text });
-  }
-
-  render() {
-    const { editing, input } = this.props;
-    return (
-      <input
-        type="text"
-        autoFocus="true"
-        value={editing.text}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onKeyDown={this.handleKeyDown}
-        {...defaults(input)}
-      />
-    );
-  }
+export default function EditTodoText(props) {
+  const { editing, input } = props;
+  return (
+    <input
+      type="text"
+      autoFocus="true"
+      value={editing.text}
+      onBlur={blurHandler(props)}
+      onChange={changeHandler(props)}
+      onKeyDown={keydownHandler(props)}
+      {...defaults(input)}
+    />
+  );
 }
 
 EditTodoText.propTypes = {
