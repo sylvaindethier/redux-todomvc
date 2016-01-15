@@ -1,9 +1,9 @@
-export function defaultProps(defaults, ...args) {
+export default function defaults(props, ...args) {
   const _props = {};
-  for (const key in defaults) {
-    if (!defaults.hasOwnProperty(key)) continue;
-    const value = defaults[key];
-    _props[key] = typeof value !== 'function' ? value : value(...args);
+  for (const key in props) {
+    if (!props.hasOwnProperty(key)) continue;
+    const value = props[key];
+    _props[key] = typeof value === 'function' ? value(...args) : value;
   }
 
   return _props;
@@ -45,8 +45,9 @@ export const EditableTodoText = {
 
 export const Filter = {
   isCurrent: false,
-  el: {
+  a: {
     className: props => props.isCurrent ? 'selected' : '',
+    style: props => (props.isCurrent ? null : { cursor: 'pointer' }),
     children: props => ({ NONE: 'All', DONE: 'Done', TODO: 'Todo' })[props.filter],
   },
 };
@@ -138,7 +139,7 @@ export const Todo = {
     className: 'view',
     children: {
       // ToggleTodoDone: {},
-      // EditTodoText: {},
+      // EditableTodoText: {},
       // DeleteTodo: {},
     },
   },

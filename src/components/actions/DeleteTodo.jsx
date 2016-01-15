@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes, todo as todoPropTypes } from '../.propTypes';
-import { DeleteTodo as defaultProps, defaultProps as defaults } from '../.defaultProps';
+import {
+  actions as actionsPropTypes,
+  todo as todoPropTypes,
+} from '../../props/types';
+import defaults, { DeleteTodo as defaultProps } from '../../props/defaults';
 
 
 // function deleteTodoAction(props) {

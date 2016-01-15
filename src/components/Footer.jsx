@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes, filter as filterPropTypes } from './.propTypes';
-import { Footer as defaultProps, defaultProps as defaults } from './.defaultProps';
+import {
+  actions as actionsPropTypes,
+  filter as filterPropTypes,
+} from '../props/types';
+import defaults, { Footer as defaultProps } from '../props/defaults';
 import FilterList from './FilterList';
 import DeleteAllDone from './actions/DeleteAllDone';
 

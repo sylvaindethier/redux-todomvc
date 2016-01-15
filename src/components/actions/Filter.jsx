@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes, filter as filterPropTypes } from '../.propTypes';
-import { Filter as defaultProps, defaultProps as defaults } from '../.defaultProps';
+import {
+  actions as actionsPropTypes,
+  filter as filterPropTypes,
+} from '../../props/types';
+import defaults, { Filter as defaultProps } from '../../props/defaults';
 
 
 // function filterAction(props) {
@@ -16,17 +19,11 @@ function filterHandler(props) {
 }
 
 export default function Filter(props) {
-  const { isCurrent, el } = props;
-  if (isCurrent) {
-    return (
-      <span {...defaults(el, props)} />
-    );
-  }
+  const { a } = props;
   return (
     <a
       onClick={filterHandler(props)}
-      style={{ cursor: 'pointer' }}
-      {...defaults(el, props)}
+      {...defaults(a, props)}
     />
   );
 }
@@ -36,7 +33,7 @@ Filter.propTypes = {
   filter: filterPropTypes,
 
   isCurrent: PropTypes.bool,
-  el: PropTypes.object,
+  a: PropTypes.object,
 };
 
 Filter.defaultProps = defaultProps;

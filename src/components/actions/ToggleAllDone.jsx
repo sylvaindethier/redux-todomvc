@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes } from '../.propTypes';
-import { ToggleAllDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
+import { actions as actionsPropTypes } from '../../props/types';
+import defaults, { ToggleAllDone as defaultProps } from '../../props/defaults';
 
 
 // no need for a toggleAllDone handler, event & props are useless

@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes, todo as todoPropTypes } from '../.propTypes';
-import { ToggleTodoDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
+import {
+  actions as actionsPropTypes,
+  todo as todoPropTypes,
+} from '../../props/types';
+import defaults, { ToggleTodoDone as defaultProps } from '../../props/defaults';
 
 
 // function toggleTodoDoneAction(props) {
@@ -11,7 +14,7 @@ function toggleTodoDoneHandler(props) {
   return function handleChange(/* e */) {
     // toggleTodoDoneAction(props);
     const { actions, todo } = props;
-    actions.toggleTodoDone(todo.id);
+    actions.toggleTodoDone(todo);
   };
 }
 

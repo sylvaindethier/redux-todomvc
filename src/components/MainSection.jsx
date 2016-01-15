@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { App as AppPropTypes } from './.propTypes';
-import { MainSection as defaultProps, defaultProps as defaults } from './.defaultProps';
+import { App as AppPropTypes } from '../props/types';
+import defaults, { MainSection as defaultProps } from '../props/defaults';
 import { filterDone } from '../model';
 import ToggleAllDone from './actions/ToggleAllDone';
 import TodoList from './TodoList';

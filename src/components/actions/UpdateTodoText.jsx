@@ -3,8 +3,8 @@ import {
   actions as actionsPropTypes,
   editing as editingPropTypes,
   todo as todoPropTypes,
-} from '../.propTypes';
-import { UpdateTodoText as defaultProps, defaultProps as defaults } from '../.defaultProps';
+} from '../../props/types';
+import defaults, { UpdateTodoText as defaultProps } from '../../props/defaults';
 import EditTodoText from './EditTodoText';
 
 

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes } from '../.propTypes';
-import { DeleteAllDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
+import { actions as actionsPropTypes } from '../../props/types';
+import defaults, { DeleteAllDone as defaultProps } from '../../props/defaults';
 
 
 // no need for a deleteAllDone handler, event & props are useless

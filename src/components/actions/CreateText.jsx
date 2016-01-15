@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes, editing as editingPropTypes } from '../.propTypes';
-import { CreateText as defaultProps, defaultProps as defaults } from '../.defaultProps';
+import {
+  actions as actionsPropTypes,
+  editing as editingPropTypes,
+} from '../../props/types';
+import defaults, { CreateText as defaultProps } from '../../props/defaults';
 import EditTodoText from './EditTodoText';
 
 

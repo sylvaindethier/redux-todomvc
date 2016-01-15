@@ -1,6 +1,6 @@
 import React from 'react';
-import { actions as actionsPropTypes } from '../.propTypes';
-import { DeleteAll as defaultProps } from '../.defaultProps';
+import { actions as actionsPropTypes } from '../../props/types';
+import { DeleteAll as defaultProps } from '../../props/defaults';
 
 
 export default function DeleteAll() {

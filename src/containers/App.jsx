@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { App as AppPropTypes } from '../components/.propTypes';
+import { App as AppPropTypes } from '../props/types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // actions

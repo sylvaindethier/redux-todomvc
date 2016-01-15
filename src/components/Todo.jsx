@@ -3,8 +3,8 @@ import {
   actions as actionsPropTypes,
   todo as todoPropTypes,
   editing as editingPropTypes,
-} from './.propTypes';
-import { Todo as defaultProps, defaultProps as defaults } from './.defaultProps';
+} from '../props/types';
+import defaults, { Todo as defaultProps } from '../props/defaults';
 import UpdateTodoText from './actions/UpdateTodoText';
 import EditableTodoText from './actions/EditableTodoText';
 import ToggleTodoDone from './actions/ToggleTodoDone';
@@ -63,7 +63,7 @@ Todo.propTypes = {
   UpdateTodoText: PropTypes.object,
   div: PropTypes.shape({ children: PropTypes.shape({
     ToggleTodoDone: PropTypes.object,
-    label: PropTypes.object,
+    EditableTodoText: PropTypes.object,
     DeleteTodo: PropTypes.object,
   }) }),
 };

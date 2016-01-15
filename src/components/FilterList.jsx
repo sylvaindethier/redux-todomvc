@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes, filter as filterPropTypes } from './.propTypes';
-import { FilterList as defaultProps, defaultProps as defaults } from './.defaultProps';
+import {
+  actions as actionsPropTypes,
+  filter as filterPropTypes,
+} from '../props/types';
+import defaults, { FilterList as defaultProps } from '../props/defaults';
 import Filter from './actions/Filter';
 import { filters } from '../constants/filters';
 
