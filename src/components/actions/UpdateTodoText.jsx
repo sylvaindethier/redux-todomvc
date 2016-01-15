@@ -8,7 +8,7 @@ import { UpdateTodoText as defaultProps, defaultProps as defaults } from '../.de
 import EditTodoText from './EditTodoText';
 
 
-// function saveTextAction({ props, text }) {
+// function saveTextAction(props, { text }) {
 //   const { actions, editing, todo } = props;
 //   const { id } = editing;
 //
@@ -22,7 +22,7 @@ import EditTodoText from './EditTodoText';
 // }
 function saveTextHandler(props) {
   return function saveText({ text }) {
-    // saveTextAction({ props, text });
+    // saveTextAction(props, { text });
     const { actions, editing, todo } = props;
     const { id } = editing;
 

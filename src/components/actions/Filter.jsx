@@ -3,13 +3,13 @@ import { actions as actionsPropTypes, filter as filterPropTypes } from '../.prop
 import { Filter as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
-// function filterAction({ props }) {
+// function filterAction(props) {
 //   const { actions, filter: filtr } = props;
 //   actions.filter(filtr);
 // }
 function filterHandler(props) {
   return function hanldeClick(/* e */) {
-    // filterAction({ props });
+    // filterAction(props);
     const { actions, filter: filtr } = props;
     actions.filter(filtr);
   };

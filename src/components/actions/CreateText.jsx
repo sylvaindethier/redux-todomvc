@@ -4,7 +4,7 @@ import { CreateText as defaultProps, defaultProps as defaults } from '../.defaul
 import EditTodoText from './EditTodoText';
 
 
-// function createTextAction({ props, text }) {
+// function createTextAction(props, { text }) {
 //   const { actions } = props;
 //   if (text && text.length) {
 //     actions.createText({ text });
@@ -12,7 +12,7 @@ import EditTodoText from './EditTodoText';
 // }
 function createTextHandler(props) {
   return function createText({ text }) {
-    // createTextAction({ props, text });
+    // createTextAction(props, { text });
     const { actions } = props;
     if (text && text.length) {
       actions.createText({ text });
