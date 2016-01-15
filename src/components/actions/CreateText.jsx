@@ -26,10 +26,14 @@ export default function CreateText(props) {
     editing,
     EditTodoText: editTodoText,
   } = props;
+  const editingCreateText = {
+    id: '', // editing.id is always empty for new todo
+    text: editing.id ? '' : editing.text, // do not pass text if not editing
+  };
   return (
     <EditTodoText
       actions={actions}
-      editing={editing}
+      editing={editingCreateText}
       saveText={createTextHandler(props)}
       isNew
       {...defaults(editTodoText)}
