@@ -1,32 +1,47 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes } from '../.propTypes';
+import { actions as actionsPropTypes, editing as editingPropTypes } from '../.propTypes';
 import { CreateText as defaultProps, defaultProps as defaults } from '../.defaultProps';
-import TodoTextInput from '../TodoTextInput';
+import EditTodoText from './EditTodoText';
 
 
+// function createTextAction({ props, text }) {
+//   const { actions } = props;
+//   if (text && text.length) {
+//     actions.createText({ text });
+//   }
+// }
 function createTextHandler(props) {
-  const { actions } = props;
-  return function createText(text) {
+  return function createText({ text }) {
+    // createTextAction({ props, text });
+    const { actions } = props;
     if (text && text.length) {
-      actions.createText(text);
+      actions.createText({ text });
     }
   };
 }
 
 export default function CreateText(props) {
-  const { TodoTextInput: todoTextInput } = props;
+  const {
+    actions,
+    editing,
+    EditTodoText: editTodoText,
+  } = props;
   return (
-    <TodoTextInput
+    <EditTodoText
+      actions={actions}
+      editing={editing}
       saveText={createTextHandler(props)}
-      {...defaults(todoTextInput)}
+      isNew
+      {...defaults(editTodoText)}
     />
   );
 }
 
 CreateText.propTypes = {
   actions: actionsPropTypes,
+  editing: editingPropTypes,
 
-  TodoTextInput: PropTypes.object,
+  EditTodoText: PropTypes.object,
 };
 
 CreateText.defaultProps = defaultProps;

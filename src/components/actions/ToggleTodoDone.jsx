@@ -3,8 +3,13 @@ import { actions as actionsPropTypes, todo as todoPropTypes } from '../.propType
 import { ToggleTodoDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
-function toggleAllDoneHandler(props) {
-  return function handleToggleTodoDone(/* e */) {
+// function toggleTodoDoneAction(props) {
+//   const { actions, todo } = props;
+//   actions.toggleTodoDone(todo.id);
+// }
+function toggleTodoDoneHandler(props) {
+  return function handleChange(/* e */) {
+    // toggleTodoDoneAction(props);
     const { actions, todo } = props;
     actions.toggleTodoDone(todo.id);
   };
@@ -14,7 +19,7 @@ export default function ToggleTodoDone(props) {
   const { todo, input } = props;
   return (
     <input
-      onChange={toggleAllDoneHandler(props)}
+      onChange={toggleTodoDoneHandler(props)}
       type="checkbox"
       checked={todo.done}
       {...defaults(input)}

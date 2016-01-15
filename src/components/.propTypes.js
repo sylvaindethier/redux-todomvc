@@ -20,10 +20,10 @@ export const filter = PropTypes.oneOf(
   filters
 ).isRequired;
 
-export const editing = PropTypes.oneOfType([
-  PropTypes.string,
-  PropTypes.bool,
-]).isRequired;
+export const editing = PropTypes.shape({
+  text: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+}).isRequired;
 
 export const App = {
   actions,

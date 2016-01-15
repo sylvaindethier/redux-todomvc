@@ -3,10 +3,15 @@ import { actions as actionsPropTypes, todo as todoPropTypes } from '../.propType
 import { DeleteTodo as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
+// function deleteTodoAction(props) {
+//   const { actions, todo } = props;
+//   actions.deleteTodo(todo);
+// }
 function deleteTodoHandler(props) {
-  return function handleDeleteTodo(/* e */) {
+  return function handleClick(/* e */) {
+    // deleteTodoAction(props);
     const { actions, todo } = props;
-    actions.deleteTodo(todo.id);
+    actions.deleteTodo(todo);
   };
 }
 

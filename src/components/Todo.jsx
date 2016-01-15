@@ -6,7 +6,7 @@ import {
 } from './.propTypes';
 import { Todo as defaultProps, defaultProps as defaults } from './.defaultProps';
 import UpdateTodoText from './actions/UpdateTodoText';
-import EditTodo from './actions/EditTodo';
+import EditableTodoText from './actions/EditableTodoText';
 import ToggleTodoDone from './actions/ToggleTodoDone';
 import DeleteTodo from './actions/DeleteTodo';
 
@@ -17,10 +17,11 @@ export default function Todo(props) {
   const {
     UpdateTodoText: updateTodoText,
   } = props;
-  if (editing) {
+  if (editing.id === todo.id) {
     return (
       <UpdateTodoText
         actions={actions}
+        editing={editing}
         todo={todo}
         {...defaults(updateTodoText)}
       />
@@ -31,7 +32,7 @@ export default function Todo(props) {
   const {
     ToggleTodoDone: toggleTodoDone,
     DeleteTodo: deleteTodo,
-    EditTodo: editTodo,
+    EditableTodoText: editableTodoText,
   } = div.children;
   return (
     <div {...defaults(div)}>
@@ -40,10 +41,10 @@ export default function Todo(props) {
         todo={todo}
         {...defaults(toggleTodoDone)}
       />
-      <EditTodo
+      <EditableTodoText
         actions={actions}
         todo={todo}
-        {...defaults(editTodo)}
+        {...defaults(editableTodoText)}
       />
       <DeleteTodo
         actions={actions}

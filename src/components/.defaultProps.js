@@ -9,38 +9,20 @@ export function defaultProps(defaults, ...args) {
   return _props;
 }
 
-export const TodoTextInput = {
+
+export const EditTodoText = {
   isNew: false,
   // input: {},
 };
 
 export const CreateText = {
-  TodoTextInput: Object.assign({}, TodoTextInput, {
+  EditTodoText: Object.assign({}, EditTodoText, {
     isNew: true,
-    value: '',
     input: {
       placeholder: 'What needs to be done',
       className: 'new-todo',
     },
   }),
-};
-
-export const EditTodo = {
-  label: {
-    children: props => props.todo.text,
-  },
-};
-
-export const UpdateTodoText = {
-  TodoTextInput: Object.assign({}, TodoTextInput, {
-    input: {
-      className: 'edit',
-    },
-  }),
-};
-
-export const DeleteTodo = {
-  button: { className: 'destroy' },
 };
 
 export const DeleteAll = {
@@ -53,14 +35,12 @@ export const DeleteAllDone = {
   },
 };
 
-export const ToggleTodoDone = {
-  input: { className: 'toggle' },
+export const DeleteTodo = {
+  button: { className: 'destroy' },
 };
 
-export const ToggleAllDone = {
-  input: { className: 'toggle-all' },
-  totalCount: 0,
-  doneCount: 0,
+export const EditableTodoText = {
+  // label: {},
 };
 
 export const Filter = {
@@ -71,7 +51,27 @@ export const Filter = {
   },
 };
 
+export const ToggleAllDone = {
+  input: { className: 'toggle-all' },
+  totalCount: 0,
+  doneCount: 0,
+};
+
+export const ToggleTodoDone = {
+  input: { className: 'toggle' },
+};
+
+export const UpdateTodoText = {
+  EditTodoText: Object.assign({}, EditTodoText, {
+    input: {
+      className: 'edit',
+    },
+  }),
+};
+
+
 /* ************************************************************************* */
+
 
 export const FilterList = {
   ul: {
@@ -138,7 +138,7 @@ export const Todo = {
     className: 'view',
     children: {
       // ToggleTodoDone: {},
-      // EditTodo: {},
+      // EditTodoText: {},
       // DeleteTodo: {},
     },
   },

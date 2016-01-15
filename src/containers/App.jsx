@@ -16,7 +16,10 @@ class App extends Component {
     const { actions, todos, filter, editing } = this.props;
     return (
       <div>
-        <Header actions={actions} />
+        <Header
+          actions={actions}
+          editing={editing}
+        />
         <MainSection
           actions={actions}
           todos={todos}

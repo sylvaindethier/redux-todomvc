@@ -1,49 +1,64 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes, todo as todoPropTypes } from '../.propTypes';
+import {
+  actions as actionsPropTypes,
+  editing as editingPropTypes,
+  todo as todoPropTypes,
+} from '../.propTypes';
 import { UpdateTodoText as defaultProps, defaultProps as defaults } from '../.defaultProps';
-import TodoTextInput from '../TodoTextInput';
+import EditTodoText from './EditTodoText';
 
 
+// function saveTextAction({ props, text }) {
+//   const { actions, editing, todo } = props;
+//   const { id } = editing;
+//
+//   if (!text.length) {
+//     // delete if text has been erased
+//     actions.deleteTodo({ id });
+//   } else if (text !== todo.text) {
+//     // update only if text has changed
+//     actions.updateTodoText({ id, text });
+//   }
+// }
 function saveTextHandler(props) {
-  return function saveText(text) {
-    const { actions, todo } = props;
-    const id = todo.id;
+  return function saveText({ text }) {
+    // saveTextAction({ props, text });
+    const { actions, editing, todo } = props;
+    const { id } = editing;
 
     if (!text.length) {
       // delete if text has been erased
-      actions.deleteTodo(id);
+      actions.deleteTodo({ id });
     } else if (text !== todo.text) {
       // update only if text has changed
-      actions.updateTodoText(id, text);
+      actions.updateTodoText({ id, text });
     }
-    actions.editTodo(false);
   };
 }
 
-function cancelHandler(props) {
-  return function cancel() {
-    const { actions } = props;
-    actions.editTodo(false);
-  };
-}
 
 export default function UpdateTodoText(props) {
-  const { todo, TodoTextInput: todoTextInput } = props;
+  const {
+    actions,
+    editing,
+    EditTodoText: editTodoText,
+  } = props;
   return (
-    <TodoTextInput
+    <EditTodoText
+      actions={actions}
+      editing={editing}
       saveText={saveTextHandler(props)}
-      cancel={cancelHandler(props)}
-      value={todo.text}
-      {...defaults(todoTextInput)}
+      {...defaults(editTodoText)}
     />
   );
 }
 
 UpdateTodoText.propTypes = {
   actions: actionsPropTypes,
+  editing: editingPropTypes,
   todo: todoPropTypes,
 
-  TodoTextInput: PropTypes.object,
+  EditTodoText: PropTypes.object,
 };
 
 UpdateTodoText.defaultProps = defaultProps;

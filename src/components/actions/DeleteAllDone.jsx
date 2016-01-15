@@ -3,6 +3,7 @@ import { actions as actionsPropTypes } from '../.propTypes';
 import { DeleteAllDone as defaultProps, defaultProps as defaults } from '../.defaultProps';
 
 
+// no need for a deleteAllDone handler, event & props are useless
 export default function DeleteAllDone(props) {
   const { actions, button } = props;
   return (

@@ -20,11 +20,11 @@ export default function TodoList(props) {
   return (
     <ul {...defaults(ul)}>
       {todos.map(td => (
-        <li key={td.id} {...defaults(li, td.done, editing === td.id)}>
+        <li key={td.id} {...defaults(li, td.done, editing.id === td.id)}>
           <Todo
             actions={actions}
             todo={td}
-            editing={editing === td.id}
+            editing={editing}
             {...defaults(todo)}
           />
         </li>
