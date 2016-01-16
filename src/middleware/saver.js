@@ -16,7 +16,12 @@ export default function saver({
     // perform action
     const nextState = next(action);
     // and store new state if action type is not excluded
-    if (!excludeActionTypes.hasOwnProperty(action.type)) store(getState());
+    if (!excludeActionTypes.hasOwnProperty(action.type)) {
+      // do not store 'editing' real state
+      const { todos, filter } = getState();
+      const editing = { id: '', text: '' };
+      store({ todos, filter, editing });
+    }
 
     return nextState;
   };

@@ -1,14 +1,13 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from '../reducers';
-import saver from '../middlewares/saver';
+import saver from '../middleware/saver';
 
 
-const middlewares = [
+const middleware = [
   saver,
 ];
 const creators = [
-  // Middleware you want to use in development:
-  applyMiddleware(...middlewares),
+  applyMiddleware(...middleware),
 ];
 
 const finalCreateStore = compose(...creators)(createStore);
