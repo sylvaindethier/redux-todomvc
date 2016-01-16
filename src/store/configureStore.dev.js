@@ -5,10 +5,9 @@ import saver from '../middleware/saver';
 
 
 function devToolsExtension(enable) {
-  const w = window;
   const name = 'devToolsExtension';
-  return enable && typeof w === 'object' && typeof w[name] === 'function' ?
-    w[name]() : f => f;
+  return enable && typeof window === 'object' && typeof window[name] === 'function' ?
+    window[name]() : f => f;
 }
 
 const logger = createLogger();
