@@ -15,9 +15,10 @@ export function uuid() {
 
 const namespace = 'todoapp';
 export function store(data) {
-  if (arguments.length > 0) {
-    return window.localStorage.setItem(namespace, JSON.stringify(data));
+  if (!arguments.length) {
+    // no data provided, get the item
+    return JSON.parse(window.localStorage.getItem(namespace));
   }
 
-  return JSON.parse(window.localStorage.getItem(namespace));
+  window.localStorage.setItem(namespace, JSON.stringify(data));
 }
