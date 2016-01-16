@@ -23,6 +23,10 @@ function createTextHandler(props) {
   };
 }
 
+
+/**
+ * createText component
+ */
 export default function CreateText(props) {
   const {
     actions,

@@ -18,6 +18,10 @@ function toggleTodoDoneHandler(props) {
   };
 }
 
+
+/**
+ * ToggleTodoDone component
+ */
 export default function ToggleTodoDone(props) {
   const { todo, input } = props;
   return (

@@ -18,6 +18,10 @@ function deleteTodoHandler(props) {
   };
 }
 
+
+/**
+ * DeleteTodo component
+ */
 export default function DeleteTodo(props) {
   const { button } = props;
   return (

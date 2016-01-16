@@ -8,6 +8,9 @@ import FilterList from './FilterList';
 import DeleteAllDone from './actions/DeleteAllDone';
 
 
+/**
+ * Footer component
+ */
 export default function Footer(props) {
   const { actions, filter, totalCount, doneCount, filteredCount } = props;
   const leftCount = totalCount - doneCount;

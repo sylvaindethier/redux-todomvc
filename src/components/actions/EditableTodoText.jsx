@@ -18,6 +18,10 @@ function editTodoTextHandler(props) {
   };
 }
 
+
+/**
+ * EditableTodoText component
+ */
 export default function EditableTodoText(props) {
   const { todo, label } = props;
   return (

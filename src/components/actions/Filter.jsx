@@ -18,6 +18,10 @@ function filterHandler(props) {
   };
 }
 
+
+/**
+ * Filter component
+ */
 export default function Filter(props) {
   const { a } = props;
   return (

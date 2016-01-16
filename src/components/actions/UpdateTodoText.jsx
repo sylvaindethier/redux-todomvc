@@ -37,6 +37,9 @@ function saveTextHandler(props) {
 }
 
 
+/**
+ * UpdateTodoText component
+ */
 export default function UpdateTodoText(props) {
   const {
     actions,

@@ -4,6 +4,9 @@ import defaults, { DeleteAllDone as defaultProps } from '../../props/defaults';
 
 
 // no need for a deleteAllDone handler, event & props are useless
+/**
+ * DeleteAllDone component
+ */
 export default function DeleteAllDone(props) {
   const { actions, button } = props;
   return (

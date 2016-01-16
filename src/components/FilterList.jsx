@@ -8,6 +8,9 @@ import Filter from './actions/Filter';
 import { filters } from '../constants/filters';
 
 
+/**
+ * FilterList component
+ */
 export default function FilterList(props) {
   const { actions, filter: current } = props;
 

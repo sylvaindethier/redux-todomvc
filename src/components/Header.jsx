@@ -7,6 +7,9 @@ import defaults, { Header as defaultProps } from '../props/defaults';
 import CreateText from './actions/CreateText';
 
 
+/**
+ * Header component
+ */
 export default function Header(props) {
   const { actions, editing, header } = props;
   const { h1, CreateText: createText } = header.children;

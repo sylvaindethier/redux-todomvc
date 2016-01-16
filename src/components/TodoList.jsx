@@ -10,9 +10,6 @@ import Todo from './Todo';
 
 export default function TodoList(props) {
   const { actions, todos, editing } = props;
-  if (todos.length < 1) {
-    return null;
-  }
 
   const { ul } = props;
   const { li } = ul.children;

@@ -4,6 +4,9 @@ import defaults, { ToggleAllDone as defaultProps } from '../../props/defaults';
 
 
 // no need for a toggleAllDone handler, event & props are useless
+/**
+ * ToggleAllDone component
+ */
 export default function ToggleAllDone(props) {
   const { actions, areAllDone, input } = props;
   return (

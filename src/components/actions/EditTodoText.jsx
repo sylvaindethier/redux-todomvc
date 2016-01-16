@@ -13,13 +13,11 @@ const KEYCODE_ENTER = 13;
 //   const { actions } = props;
 //   actions.editTodoText({ id, text });
 // }
-
 // function cancelEditTodoTextAction(props) {
 //   // call cancelEditTodoText action
 //   const { actions } = props;
 //   actions.cancelEditTodoText();
 // }
-
 function saveTextProps(props, { e }) {
   const { actions } = props;
   const text = e.target.value.trim();
@@ -27,14 +25,12 @@ function saveTextProps(props, { e }) {
   // cancelEditTodoTextAction(props);
   actions.cancelEditTodoText();
 }
-
 function blurHandler(props) {
   return function handleBlur(e) {
     // save on blur for non new Todo (already created)
     if (!props.isNew) saveTextProps(props, { e });
   };
 }
-
 function keydownHandler(props) {
   return function handleKeyDown(e) {
     const { actions } = props;
@@ -46,7 +42,6 @@ function keydownHandler(props) {
     if (which === KEYCODE_ESC) actions.cancelEditTodoText();
   };
 }
-
 function changeHandler(props) {
   return function handleChange(e) {
     const { actions } = props;
@@ -58,6 +53,9 @@ function changeHandler(props) {
 }
 
 
+/**
+ * EditTodoText component
+ */
 export default function EditTodoText(props) {
   const { editing, input } = props;
   return (
