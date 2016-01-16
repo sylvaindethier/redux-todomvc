@@ -7,6 +7,9 @@ import TodoList from './TodoList';
 import Footer from './Footer';
 
 
+/**
+ * MainSection component
+ */
 export default function MainSection(props) {
   const { actions, todos, filter, editing } = props;
   const filtered = todos.filter(filterDone(filter));
@@ -23,31 +26,38 @@ export default function MainSection(props) {
     TodoList: todoList,
     Footer: footer,
   } = section.children;
+
+  const elToggleAllDone = !totalCount ? null : (
+    <ToggleAllDone
+      actions={actions}
+      areAllDone={doneCount === totalCount}
+      {...defaults(toggleAllDone)}
+    />
+  );
+  const elTodoList = !totalCount ? null : (
+    <TodoList
+      actions={actions}
+      todos={filtered}
+      editing={editing}
+      {...defaults(todoList)}
+    />
+  );
+  const elFooter = !totalCount ? null : (
+    <Footer
+      actions={actions}
+      filter={filter}
+      filteredCount={filteredCount}
+      doneCount={doneCount}
+      totalCount={totalCount}
+      {...defaults(footer)}
+    />
+  );
+
   return (
     <section {...section}>
-      {!totalCount ? null : (
-        <ToggleAllDone
-          actions={actions}
-          areAllDone={doneCount === totalCount}
-          {...defaults(toggleAllDone)}
-        />
-      )}
-      <TodoList
-        actions={actions}
-        todos={filtered}
-        editing={editing}
-        {...defaults(todoList)}
-      />
-      {!totalCount ? null : (
-        <Footer
-          actions={actions}
-          filter={filter}
-          filteredCount={filteredCount}
-          doneCount={doneCount}
-          totalCount={totalCount}
-          {...defaults(footer)}
-        />
-      )}
+      {elToggleAllDone}
+      {elTodoList}
+      {elFooter}
     </section>
   );
 }
