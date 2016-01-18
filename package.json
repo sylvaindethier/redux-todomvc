@@ -7,7 +7,7 @@
     "prebuild": "npm run clean && npm run build:deps",
     "build": "NODE_ENV=production webpack --colors --progress",
     "postbuild": "npm run clean:deps",
-    "build:deps": "babel-node ./scripts/build-rootString",
+    "build:deps": "NODE_ENV=production babel-node ./scripts/build-rootString",
     "clean:deps": "rimraf src/rootString.js",
     "clean": "rimraf dist && npm run clean:deps",
     "dev": "npm run clean && NODE_ENV=dev webpack --colors --progress",

@@ -3,7 +3,6 @@ import { renderToString } from 'react-dom/server';
 import Root from './Root';
 import configureStore from '../store/configureStore';
 
-
 export const rootFactory = createFactory(Root);
 
 export function configureRootComponent(initialState) {

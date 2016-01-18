@@ -4,7 +4,6 @@ import { configureRootComponent } from './containers/root';
 import { store as db } from './utils';
 import fixtures from './fixtures';
 
-
 const initialState = db() || fixtures(db);
 const component = configureRootComponent(initialState);
 const containerId = 'root';

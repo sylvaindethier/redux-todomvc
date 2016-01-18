@@ -30,8 +30,15 @@ function getEntry(/* env */) {
 
 function getPlugins(env) {
   const plugins = [
+    // pass process.env.NODE_ENV
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
+    // sort by occurence
     new webpack.optimize.OccurenceOrderPlugin(),
-  ];
+    // extract required CSS files
+    new ExtractTextPlugin('./css/todomvc-app.css'),
+  ].concat(htmlPlugins); // compile HTML files
 
   switch (true) {
     case isPROD(env):
@@ -46,11 +53,7 @@ function getPlugins(env) {
       break;
   }
 
-  // extract required CSS files
-  plugins.push(new ExtractTextPlugin('./css/todomvc-app.css'));
-
-  // return plugins;
-  return plugins.concat(htmlPlugins);
+  return plugins;
 }
 
 function getLoaders(/* env */) {
