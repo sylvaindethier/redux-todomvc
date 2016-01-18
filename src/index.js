@@ -1,17 +1,14 @@
 import 'babel-polyfill';
-import React from 'react';
 import { render } from 'react-dom';
-// containers and store
-import Root from './containers/Root';
-import configureStore from './store/configureStore';
+import { configureRootComponent } from './containers/root';
 import { store as db } from './utils';
-import { initialState as initialDemo } from './fixtures';
+import fixtures from './fixtures';
 
 
-const initialState = db() || initialDemo;
-const store = configureStore(initialState);
-db(initialState); // persist initialState first
-render(
-  <Root store={store} />,
-  document.getElementById('root')
-);
+const initialState = db() || fixtures(db);
+const component = configureRootComponent(initialState);
+const containerId = 'root';
+
+// add CSS file & render component
+import 'todomvc-app-css/index.css';
+render(component, document.getElementById(containerId));

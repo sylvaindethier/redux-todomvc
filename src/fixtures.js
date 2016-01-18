@@ -19,3 +19,8 @@ export const initialState = {
   filter: 'NONE',
   editing: { id: '', text: '' },
 };
+
+export function fixtures(store) {
+  store(initialState);
+  return initialState;
+}
