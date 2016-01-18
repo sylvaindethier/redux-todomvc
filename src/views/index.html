@@ -1,0 +1,39 @@
+<!DOCTYPE html><%
+var options = htmlWebpackPlugin.options;
+var defaults = {
+  lang: 'en',
+  title: 'Redux • TodoMVC',
+  description: 'React/Redux TodoMVC',
+  keywords: 'redux, todoapp, todo app, todomvc, todo mvc',
+  root: '',
+};
+var files = htmlWebpackPlugin.files;
+var manifest = files.manifest;
+var data = Object.assign(defaults, options.data);
+%><!--[if lt IE 7 ]> <html lang="<%= data.lang %>" class="ie6" <% if(files.manifest) { %> manifest="<%= files.manifest %>"<% } %>> <![endif]-->
+<!--[if IE 7 ]>    <html lang="<%= data.lang %>" class="ie7" <% if(files.manifest) { %> manifest="<%= files.manifest %>"<% } %>> <![endif]-->
+<!--[if IE 8 ]>    <html lang="<%= data.lang %>" class="ie8" <% if(files.manifest) { %> manifest="<%= files.manifest %>"<% } %>> <![endif]-->
+<!--[if IE 9 ]>    <html lang="<%= data.lang %>" class="ie9" <% if(files.manifest) { %> manifest="<%= files.manifest %>"<% } %>> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="<%= data.lang %>" class="" <% if(files.manifest) { %> manifest="<%= files.manifest %>"<% } %>> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title><%= data.title %></title>
+  <meta name="description" content="<%= data.description %>">
+  <meta name="keywords" content="<%= data.keywords %>">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div class="todoapp" id="root"><%= data.root %></div>
+
+  <% if (data.window) { %>
+  <script>
+    <% for (var varName in data.window) { %>
+      window['<%= varName %>'] = <%= JSON.stringify(data.window[varName]) %>;
+    <% } %>
+  </script>
+  <% } %>
+</body>
+</html>
