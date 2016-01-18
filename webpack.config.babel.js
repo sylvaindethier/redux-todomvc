@@ -1,8 +1,7 @@
 import webpack from 'webpack';
 import { resolve } from 'path';
-
-// TODO: Use html-webpack-plugin to generate HTML files
-// TODO: https://github.com/ampedandwired/html-webpack-plugin
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import htmlPlugins from './webpack-html-plugins.config.babel.js';
 
 const srcPath = resolve(__dirname, 'src');
 const distPath = resolve(__dirname, 'public');
@@ -47,16 +46,28 @@ function getPlugins(env) {
       break;
   }
 
-  return plugins;
+  // extract required CSS files
+  plugins.push(new ExtractTextPlugin('./css/todomvc-app.css'));
+
+  // return plugins;
+  return plugins.concat(htmlPlugins);
 }
 
 function getLoaders(/* env */) {
   const loaders = [
     // Babel & ESLint loaders for JS & JSX files
     {
-      loaders: ['babel', 'eslint'],
+      loaders: ['babel-loader', 'eslint-loader'],
       include: [srcPath],
       test: /\.jsx?$/,
+    },
+
+    // Style & CSS loaders for CSS files
+    {
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader', {
+        // publicPath: './css/',
+      }),
+      test: /\.css$/,
     },
   ];
 
@@ -67,9 +78,8 @@ function getLoaders(/* env */) {
 export default (env => ({
   entry: getEntry(env),
   output: {
-    path: resolve(distPath, 'js'),
-    filename: '[name].js',
-    publicPath: '/js/', // serve under '/js/' path
+    filename: './js/[name].js',
+    path: distPath,
   },
   // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   target: isTEST(env) ? 'node' : 'web',
