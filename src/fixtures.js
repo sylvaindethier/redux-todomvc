@@ -20,7 +20,7 @@ export const initialState = {
   editing: { id: '', text: '' },
 };
 
-export function fixtures(store) {
+export default function fixtures(store) {
   store(initialState);
   return initialState;
 }
