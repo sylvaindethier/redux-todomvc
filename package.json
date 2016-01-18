@@ -7,14 +7,14 @@
     "prebuild": "npm run clean && babel-node ./scripts/build-rootString",
     "build": "NODE_ENV=production webpack --colors --progress",
     "postbuild": "npm run clean:deps",
-    "clean": "rimraf public/css && rimraf public/js && npm run clean:deps",
+    "clean": "rimraf dist/css && rimraf dist/js && npm run clean:deps",
     "clean:deps": "rimraf src/rootString.js",
     "dev": "NODE_ENV=dev npm run prebuild && NODE_ENV=dev webpack --colors --progress",
     "watch": "npm run clean && NODE_ENV=dev webpack --colors --progress --watch",
     "start": "npm run clean && NODE_ENV=dev webpack-dev-server --colors --hot --inline",
     "deploy": "npm run deploy:master && npm run deploy:gh-pages",
     "deploy:master": "git push origin master",
-    "deploy:gh-pages": "gh-pages --dist public"
+    "deploy:gh-pages": "gh-pages"
   },
   "repository": {
     "type": "git",

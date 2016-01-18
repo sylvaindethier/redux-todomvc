@@ -4,7 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import htmlPlugins from './webpack-html-plugins.config.babel.js';
 
 const srcPath = resolve(__dirname, 'src');
-const distPath = resolve(__dirname, 'public');
+const distPath = resolve(__dirname, 'dist');
 
 function isPROD(env) {
   return env === undefined || env === 'prod' || env === 'production';
