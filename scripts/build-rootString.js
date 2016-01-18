@@ -4,8 +4,9 @@ import { configureRootString } from '../src/containers/root';
 
 export function buildRootStringModule(initialState) {
   const root = configureRootString(initialState);
-  const modulePath = resolve(__dirname, '../src/rootString.js');
-  writeFileSync(modulePath, `export default '${root}';`);
+  const content = `module.exports = '${root}'; export default module.exports;`;
+  const path = resolve(__dirname, '../src/rootString.js');
+  writeFileSync(path, content);
 }
 
 buildRootStringModule();
