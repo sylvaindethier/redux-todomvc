@@ -36,4 +36,4 @@ DeleteTodo.propTypes = {
   buttonProps: PropTypes.object,
 };
 
-DeleteTodo.defaultProps = defaultProps;
+DeleteTodo.defaultProps = defaultPropsDeleteTodo;

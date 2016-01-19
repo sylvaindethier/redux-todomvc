@@ -38,4 +38,4 @@ EditableTodoText.propTypes = {
   labelProps: PropTypes.object,
 };
 
-EditableTodoText.defaultProps = defaultProps;
+EditableTodoText.defaultProps = defaultPropsEditableTodoText;

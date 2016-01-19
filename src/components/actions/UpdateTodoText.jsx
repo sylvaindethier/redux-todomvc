@@ -59,4 +59,4 @@ UpdateTodoText.propTypes = {
   EditTodoTextProps: PropTypes.object,
 };
 
-UpdateTodoText.defaultProps = defaultProps;
+UpdateTodoText.defaultProps = defaultPropsUpdateTodoText;

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { PropTypesActtions, PropTypesTodo } from '../../props/types';
+import { PropTypesActions, PropTypesTodo } from '../../props/types';
 import defaultProps, { defaultPropsToggleTodoDone } from '../../props/defaults';
 
 
@@ -32,10 +32,10 @@ export default function ToggleTodoDone(props) {
 }
 
 ToggleTodoDone.propTypes = {
-  actions: PropTypesActtions,
+  actions: PropTypesActions,
   todo: PropTypesTodo,
 
   inputProps: PropTypes.object,
 };
 
-ToggleTodoDone.defaultProps = defaultProps;
+ToggleTodoDone.defaultProps = defaultPropsToggleTodoDone;

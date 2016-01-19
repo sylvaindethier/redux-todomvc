@@ -26,8 +26,8 @@ export const PropTypesEditing = PropTypes.shape({
 }).isRequired;
 
 export const PropTypesApp = {
-  PropTypesActions,
-  PropTypesTodos,
-  PropTypesFilter,
-  PropTypesEditing,
+  actions: PropTypesActions,
+  todos: PropTypesTodos,
+  filter: PropTypesFilter,
+  editing: PropTypesEditing,
 };
