@@ -18,11 +18,17 @@ function isTEST(env) {
 
 function getEntry(/* env */) {
   const entry = {
+    // vendors (be sure to load them first)
+    vendors: [
+      'react',
+      'react-dom',
+      'redux',
+      'react-redux',
+      'redux-actions',
+    ],
+
     // TodoApp entry point
     'todomvc-app': resolve(srcPath, 'index.js'),
-
-    // vendors
-    // 'vendors': [],
   };
 
   return entry;
@@ -34,10 +40,15 @@ function getPlugins(env) {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
+
     // sort by occurence
     new webpack.optimize.OccurenceOrderPlugin(),
+
     // extract required CSS files
     new ExtractTextPlugin('./css/todomvc-app.css'),
+
+    // vendors common chunk
+    new webpack.optimize.CommonsChunkPlugin('vendors', './js/[name].[hash].js'),
   ].concat(htmlPlugins); // compile HTML files
 
   switch (true) {
@@ -81,7 +92,7 @@ function getLoaders(/* env */) {
 export default (env => ({
   entry: getEntry(env),
   output: {
-    filename: './js/[name].js',
+    filename: './js/[name].[hash].js',
     path: distPath,
   },
   // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
