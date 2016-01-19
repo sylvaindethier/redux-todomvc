@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  editing as editingPropTypes,
-} from '../../props/types';
-import defaults, { CreateText as defaultProps } from '../../props/defaults';
+import { PropTypesActions, PropTypesEditing } from '../../props/types';
+import defaultProps, { defaultPropsCreateText } from '../../props/defaults';
 import EditTodoText from './EditTodoText';
 
 
@@ -31,7 +28,7 @@ export default function CreateText(props) {
   const {
     actions,
     editing: { id, text },
-    EditTodoText: editTodoText,
+    EditTodoTextProps,
   } = props;
   const editingCreateText = {
     id: '', // editing.id is always empty for new todo
@@ -43,16 +40,16 @@ export default function CreateText(props) {
       editing={editingCreateText}
       saveText={createTextHandler(props)}
       isNew
-      {...defaults(editTodoText)}
+      {...defaultProps(EditTodoTextProps)}
     />
   );
 }
 
 CreateText.propTypes = {
-  actions: actionsPropTypes,
-  editing: editingPropTypes,
+  actions: PropTypesActions,
+  editing: PropTypesEditing,
 
-  EditTodoText: PropTypes.object,
+  EditTodoTextProps: PropTypes.object,
 };
 
-CreateText.defaultProps = defaultProps;
+CreateText.defaultProps = defaultPropsCreateText;

@@ -1,10 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  todo as todoPropTypes,
-  editing as editingPropTypes,
-} from '../props/types';
-import defaults, { Todo as defaultProps } from '../props/defaults';
+import { PropTypesActions, PropTypesTodo, PropTypesEditing } from '../props/types';
+import defaultProps, { defaultPropsTodo } from '../props/defaults';
 import UpdateTodoText from './actions/UpdateTodoText';
 import EditableTodoText from './actions/EditableTodoText';
 import ToggleTodoDone from './actions/ToggleTodoDone';
@@ -14,60 +10,58 @@ import DeleteTodo from './actions/DeleteTodo';
 export default function Todo(props) {
   const { actions, todo, editing } = props;
 
-  const {
-    UpdateTodoText: updateTodoText,
-  } = props;
+  const { UpdateTodoTextProps } = props;
   if (editing.id === todo.id) {
     return (
       <UpdateTodoText
         actions={actions}
         editing={editing}
         todo={todo}
-        {...defaults(updateTodoText)}
+        {...defaultProps(UpdateTodoTextProps)}
       />
     );
   }
 
   const {
-    div,
-    div: { children: {
-      ToggleTodoDone: toggleTodoDone,
-      DeleteTodo: deleteTodo,
-      EditableTodoText: editableTodoText,
+    divProps,
+    divProps: { children: {
+      ToggleTodoDoneProps,
+      DeleteTodoProps,
+      EditableTodoTextProps,
     } },
   } = props;
   return (
-    <div {...defaults(div)}>
+    <div {...defaultProps(divProps)}>
       <ToggleTodoDone
         actions={actions}
         todo={todo}
-        {...defaults(toggleTodoDone)}
+        {...defaultProps(ToggleTodoDoneProps)}
       />
       <EditableTodoText
         actions={actions}
         todo={todo}
-        {...defaults(editableTodoText)}
+        {...defaultProps(EditableTodoTextProps)}
       />
       <DeleteTodo
         actions={actions}
         todo={todo}
-        {...defaults(deleteTodo)}
+        {...defaultProps(DeleteTodoProps)}
       />
     </div>
   );
 }
 
 Todo.propTypes = {
-  actions: actionsPropTypes,
-  todo: todoPropTypes,
-  editing: editingPropTypes,
+  actions: PropTypesActions,
+  todo: PropTypesTodo,
+  editing: PropTypesEditing,
 
-  UpdateTodoText: PropTypes.object,
-  div: PropTypes.shape({ children: PropTypes.shape({
-    ToggleTodoDone: PropTypes.object,
-    EditableTodoText: PropTypes.object,
-    DeleteTodo: PropTypes.object,
+  UpdateTodoTextProps: PropTypes.object,
+  divProps: PropTypes.shape({ children: PropTypes.shape({
+    ToggleTodoDoneProps: PropTypes.object,
+    EditableTodoTextProps: PropTypes.object,
+    DeleteTodoProps: PropTypes.object,
   }) }),
 };
 
-Todo.defaultProps = defaultProps;
+Todo.defaultProps = defaultPropsTodo;

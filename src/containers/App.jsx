@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { App as AppPropTypes } from '../props/types';
+import { PropTypesApp } from '../props/types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // actions
@@ -31,7 +31,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = AppPropTypes;
+App.propTypes = PropTypesApp;
 
 function mapStateToProps(state) {
   return {

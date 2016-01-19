@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  editing as editingPropTypes,
-} from '../props/types';
-import defaults, { Header as defaultProps } from '../props/defaults';
+import { PropTypesActions, PropTypesEditing } from '../props/types';
+import defaultProps, { defaultPropsHeader } from '../props/defaults';
 import CreateText from './actions/CreateText';
 
 
@@ -12,32 +9,32 @@ import CreateText from './actions/CreateText';
  */
 export default function Header(props) {
   const { actions, editing,
-    header,
-    header: { children: {
-      h1,
-      CreateText: createText,
+    headerProps,
+    headerProps: { children: {
+      h1Props,
+      CreateTextProps,
     } },
   } = props;
   return (
-    <header {...defaults(header)}>
-      <h1 {...defaults(h1)} />
+    <header {...defaultProps(headerProps)}>
+      <h1 {...defaultProps(h1Props)} />
       <CreateText
         actions={actions}
         editing={editing}
-        {...defaults(createText)}
+        {...defaultProps(CreateTextProps)}
       />
     </header>
   );
 }
 
 Header.propTypes = {
-  actions: actionsPropTypes,
-  editing: editingPropTypes,
+  actions: PropTypesActions,
+  editing: PropTypesEditing,
 
-  header: PropTypes.shape({ children: PropTypes.shape({
-    h1: PropTypes.object,
-    CreateText: PropTypes.object,
+  headerProps: PropTypes.shape({ children: PropTypes.shape({
+    h1Props: PropTypes.object,
+    CreateTextProps: PropTypes.object,
   }) }),
 };
 
-Header.defaultProps = defaultProps;
+Header.defaultProps = defaultPropsHeader;

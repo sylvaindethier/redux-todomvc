@@ -1,10 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  editing as editingPropTypes,
-  todo as todoPropTypes,
-} from '../../props/types';
-import defaults, { UpdateTodoText as defaultProps } from '../../props/defaults';
+import { PropTypesAction, PropTypesEditing, PropTypesTodo } from '../../props/types';
+import defaultProps, { defaultPropsUpdateTodoText } from '../../props/defaults';
 import EditTodoText from './EditTodoText';
 
 
@@ -43,24 +39,24 @@ export default function UpdateTodoText(props) {
   const {
     actions,
     editing,
-    EditTodoText: editTodoText,
+    EditTodoTextProps,
   } = props;
   return (
     <EditTodoText
       actions={actions}
       editing={editing}
       saveText={saveTextHandler(props)}
-      {...defaults(editTodoText)}
+      {...defaultProps(EditTodoTextProps)}
     />
   );
 }
 
 UpdateTodoText.propTypes = {
-  actions: actionsPropTypes,
-  editing: editingPropTypes,
-  todo: todoPropTypes,
+  actions: PropTypesAction,
+  editing: PropTypesEditing,
+  todo: PropTypesTodo,
 
-  EditTodoText: PropTypes.object,
+  EditTodoTextProps: PropTypes.object,
 };
 
 UpdateTodoText.defaultProps = defaultProps;

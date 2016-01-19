@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  filter as filterPropTypes,
-} from '../props/types';
-import defaults, { FilterList as defaultProps } from '../props/defaults';
+import { PropTypesActions, PropTypesFilter } from '../props/types';
+import defaultProps, { defaultPropsFilterList } from '../props/defaults';
 import Filter from './actions/Filter';
 import { filters } from '../constants/filters';
 
@@ -15,23 +12,23 @@ export default function FilterList(props) {
   const { actions, filter: current } = props;
 
   const {
-    ul,
-    ul: { children: {
-      li,
+    ulProps,
+    ulProps: { children: {
+      liProps,
     } },
-    ul: { children: { li: { children: {
-      Filter: filter,
+    ulProps: { children: { liProps: { children: {
+      FilterProps,
     } } } },
   } = props;
   return (
-    <ul {...ul}>
-      {filters.map(filtr =>
-        <li key={filtr} {...defaults(li)}>
+    <ul {...defaultProps(ulProps)}>
+      {filters.map(filter =>
+        <li key={filter} {...defaultProps(liProps)}>
           <Filter
             actions={actions}
-            filter={filtr}
-            isCurrent={filtr === current}
-            {...defaults(filter)}
+            filter={filter}
+            isCurrent={filter === current}
+            {...defaultProps(FilterProps)}
           />
         </li>
       )}
@@ -40,14 +37,14 @@ export default function FilterList(props) {
 }
 
 FilterList.propTypes = {
-  actions: actionsPropTypes,
-  filter: filterPropTypes,
+  actions: PropTypesActions,
+  filter: PropTypesFilter,
 
-  ul: PropTypes.shape({ children: PropTypes.shape({
-    li: PropTypes.shape({ children: PropTypes.shape({
-      Filter: PropTypes.object,
+  ulProps: PropTypes.shape({ children: PropTypes.shape({
+    liProps: PropTypes.shape({ children: PropTypes.shape({
+      FilterProps: PropTypes.object,
     }) }),
   }) }),
 };
 
-FilterList.defaultProps = defaultProps;
+FilterList.defaultProps = defaultPropsFilterList;

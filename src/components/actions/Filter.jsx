@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  filter as filterPropTypes,
-} from '../../props/types';
-import defaults, { Filter as defaultProps } from '../../props/defaults';
+import { PropTypesActions, PropTypesFilter } from '../../props/types';
+import defaultProps, { defaultPropsFilter } from '../../props/defaults';
 
 
 // function filterAction(props) {
@@ -23,21 +20,21 @@ function filterHandler(props) {
  * Filter component
  */
 export default function Filter(props) {
-  const { a } = props;
+  const { aProps } = props;
   return (
     <a
       onClick={filterHandler(props)}
-      {...defaults(a, props)}
+      {...defaultProps(aProps, props)}
     />
   );
 }
 
 Filter.propTypes = {
-  actions: actionsPropTypes,
-  filter: filterPropTypes,
+  actions: PropTypesActions,
+  filter: PropTypesFilter,
 
   isCurrent: PropTypes.bool,
-  a: PropTypes.object,
+  aProps: PropTypes.object,
 };
 
-Filter.defaultProps = defaultProps;
+Filter.defaultProps = defaultPropsFilter;

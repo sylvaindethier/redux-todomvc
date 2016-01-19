@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  todo as todoPropTypes,
-} from '../../props/types';
-import defaults, { DeleteTodo as defaultProps } from '../../props/defaults';
+import { PropTypesActions, PropTypesTodo } from '../../props/types';
+import defaultProps, { defaultPropsDeleteTodo } from '../../props/defaults';
 
 
 // function deleteTodoAction(props) {
@@ -23,20 +20,20 @@ function deleteTodoHandler(props) {
  * DeleteTodo component
  */
 export default function DeleteTodo(props) {
-  const { button } = props;
+  const { buttonProps } = props;
   return (
     <button
       onClick={deleteTodoHandler(props)}
-      {...defaults(button)}
+      {...defaultProps(buttonProps)}
     />
   );
 }
 
 DeleteTodo.propTypes = {
-  actions: actionsPropTypes,
-  todo: todoPropTypes,
+  actions: PropTypesActions,
+  todo: PropTypesTodo,
 
-  button: PropTypes.object,
+  buttonProps: PropTypes.object,
 };
 
 DeleteTodo.defaultProps = defaultProps;

@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  editing as editingPropTypes,
-} from '../../props/types';
-import defaults, { EditTodoText as defaultProps } from '../../props/defaults';
+import { PropTypesActions, PropTypesEditing } from '../../props/types';
+import defaultProps, { defaultPropsEditTodoText } from '../../props/defaults';
 
 const KEYCODE_ESC = 27;
 const KEYCODE_ENTER = 13;
@@ -56,7 +53,7 @@ function changeHandler(props) {
  * EditTodoText component
  */
 export default function EditTodoText(props) {
-  const { editing: { text }, input } = props;
+  const { editing: { text }, inputProps } = props;
   return (
     <input
       type="text"
@@ -65,18 +62,18 @@ export default function EditTodoText(props) {
       onBlur={blurHandler(props)}
       onChange={changeHandler(props)}
       onKeyDown={keydownHandler(props)}
-      {...defaults(input)}
+      {...defaultProps(inputProps)}
     />
   );
 }
 
 EditTodoText.propTypes = {
-  actions: actionsPropTypes,
-  editing: editingPropTypes,
+  actions: PropTypesActions,
+  editing: PropTypesEditing,
   saveText: PropTypes.func.isRequired,
 
   isNew: PropTypes.bool,
-  input: PropTypes.object,
+  inputProps: PropTypes.object,
 };
 
-EditTodoText.defaultProps = defaultProps;
+EditTodoText.defaultProps = defaultPropsEditTodoText;

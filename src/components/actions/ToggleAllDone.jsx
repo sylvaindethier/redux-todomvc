@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes } from '../../props/types';
-import defaults, { ToggleAllDone as defaultProps } from '../../props/defaults';
+import { PropTypesActions } from '../../props/types';
+import defaultProps, { defaultPropsToggleAllDone } from '../../props/defaults';
 
 
 // no need for a toggleAllDone handler, event & props are useless
@@ -8,22 +8,22 @@ import defaults, { ToggleAllDone as defaultProps } from '../../props/defaults';
  * ToggleAllDone component
  */
 export default function ToggleAllDone(props) {
-  const { actions, areAllDone, input } = props;
+  const { actions, areAllDone, inputProps } = props;
   return (
     <input
       onChange={actions.toggleAllDone}
       type="checkbox"
       checked={areAllDone}
-      {...defaults(input)}
+      {...defaultProps(inputProps)}
     />
   );
 }
 
 ToggleAllDone.propTypes = {
-  actions: actionsPropTypes,
+  actions: PropTypesActions,
 
   areAllDone: PropTypes.bool,
-  input: PropTypes.object,
+  inputProps: PropTypes.object,
 };
 
-ToggleAllDone.defaultProps = defaultProps;
+ToggleAllDone.defaultProps = defaultPropsToggleAllDone;

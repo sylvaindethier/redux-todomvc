@@ -1,10 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  todos as todosPropTypes,
-  editing as editingPropTypes,
-} from '../props/types';
-import defaults, { TodoList as defaultProps } from '../props/defaults';
+import { PropTypesActions, PropTypesTodos, PropTypesEditing } from '../props/types';
+import defaultProps, { defaultPropsTodoList } from '../props/defaults';
 import Todo from './Todo';
 
 
@@ -12,23 +8,23 @@ export default function TodoList(props) {
   const { actions, todos, editing } = props;
 
   const {
-    ul,
-    ul: { children: {
-      li,
+    ulProps,
+    ulProps: { children: {
+      liProps,
     } },
-    ul: { children: { li: { children: {
-      Todo: todo,
+    ulProps: { children: { liProps: { children: {
+      TodoProps,
     } } } },
   } = props;
   return (
-    <ul {...defaults(ul)}>
-      {todos.map(td => (
-        <li key={td.id} {...defaults(li, td.done, editing.id === td.id)}>
+    <ul {...defaultProps(ulProps)}>
+      {todos.map(todo => (
+        <li key={todo.id} {...defaultProps(liProps, todo.done, editing.id === todo.id)}>
           <Todo
             actions={actions}
-            todo={td}
+            todo={todo}
             editing={editing}
-            {...defaults(todo)}
+            {...defaultProps(TodoProps)}
           />
         </li>
       ))}
@@ -37,15 +33,15 @@ export default function TodoList(props) {
 }
 
 TodoList.propTypes = {
-  actions: actionsPropTypes,
-  todos: todosPropTypes,
-  editing: editingPropTypes,
+  actions: PropTypesActions,
+  todos: PropTypesTodos,
+  editing: PropTypesEditing,
 
-  ul: PropTypes.shape({ children: PropTypes.shape({
-    li: PropTypes.shape({ children: PropTypes.shape({
-      Todo: PropTypes.object,
+  ulProps: PropTypes.shape({ children: PropTypes.shape({
+    liProps: PropTypes.shape({ children: PropTypes.shape({
+      TodoProps: PropTypes.object,
     }) }),
   }) }),
 };
 
-TodoList.defaultProps = defaultProps;
+TodoList.defaultProps = defaultPropsTodoList;

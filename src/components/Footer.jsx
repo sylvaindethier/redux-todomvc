@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  filter as filterPropTypes,
-} from '../props/types';
-import defaults, { Footer as defaultProps } from '../props/defaults';
+import { PropTypesActions, PropTypesFilter } from '../props/types';
+import defaultProps, { defaultPropsFooter } from '../props/defaults';
 import FilterList from './FilterList';
 import DeleteAllDone from './actions/DeleteAllDone';
 
@@ -16,25 +13,25 @@ export default function Footer(props) {
   const leftCount = totalCount - doneCount;
 
   const {
-    footer,
-    footer: { children: {
-      span,
-      FilterList: filterList,
-      DeleteAllDone: deleteAllDone,
+    footerProps,
+    footerProps: { children: {
+      spanProps,
+      FilterListProps,
+      DeleteAllDoneProps,
     } },
   } = props;
   return (
-    <footer {...defaults(footer)}>
-      <span {...defaults(span, leftCount, totalCount, filteredCount)} />
+    <footer {...defaultProps(footerProps)}>
+      <span {...defaultProps(spanProps, leftCount, totalCount, filteredCount)} />
       <FilterList
         actions={actions}
         filter={filter}
-        {...defaults(filterList)}
+        {...defaultProps(FilterListProps)}
       />
     {doneCount < 1 ? null : (
       <DeleteAllDone
         actions={actions}
-        {...defaults(deleteAllDone)}
+        {...defaultProps(DeleteAllDoneProps)}
       />
     )}
     </footer>
@@ -42,17 +39,17 @@ export default function Footer(props) {
 }
 
 Footer.propTypes = {
-  actions: actionsPropTypes,
-  filter: filterPropTypes,
+  actions: PropTypesActions,
+  filter: PropTypesFilter,
 
   totalCount: PropTypes.number,
   doneCount: PropTypes.number,
   filteredCount: PropTypes.number,
-  footer: PropTypes.shape({ children: PropTypes.shape({
-    span: PropTypes.object,
-    FilterList: PropTypes.object,
-    DeleteAllDone: PropTypes.object,
+  footerProps: PropTypes.shape({ children: PropTypes.shape({
+    spanProps: PropTypes.object,
+    FilterListProps: PropTypes.object,
+    DeleteAllDoneProps: PropTypes.object,
   }) }),
 };
 
-Footer.defaultProps = defaultProps;
+Footer.defaultProps = defaultPropsFooter;

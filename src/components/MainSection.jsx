@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { App as AppPropTypes } from '../props/types';
-import defaults, { MainSection as defaultProps } from '../props/defaults';
+import { PropTypesApp } from '../props/types';
+import defaultProps, { defaultPropsMainSection } from '../props/defaults';
 import { filterDone } from '../model';
 import ToggleAllDone from './actions/ToggleAllDone';
 import TodoList from './TodoList';
@@ -21,11 +21,11 @@ export default function MainSection(props) {
   const filteredCount = filtered.length;
 
   const {
-    section,
-    section: { children: {
-      ToggleAllDone: toggleAllDone,
-      TodoList: todoList,
-      Footer: footer,
+    sectionProps,
+    sectionProps: { children: {
+      ToggleAllDoneProps,
+      TodoListProps,
+      FooterProps,
     } },
   } = props;
 
@@ -33,7 +33,7 @@ export default function MainSection(props) {
     <ToggleAllDone
       actions={actions}
       areAllDone={doneCount === totalCount}
-      {...defaults(toggleAllDone)}
+      {...defaultProps(ToggleAllDoneProps)}
     />
   );
   const elTodoList = !totalCount ? null : (
@@ -41,7 +41,7 @@ export default function MainSection(props) {
       actions={actions}
       todos={filtered}
       editing={editing}
-      {...defaults(todoList)}
+      {...defaultProps(TodoListProps)}
     />
   );
   const elFooter = !totalCount ? null : (
@@ -51,12 +51,12 @@ export default function MainSection(props) {
       filteredCount={filteredCount}
       doneCount={doneCount}
       totalCount={totalCount}
-      {...defaults(footer)}
+      {...defaultProps(FooterProps)}
     />
   );
 
   return (
-    <section {...section}>
+    <section {...defaultProps(sectionProps)}>
       {elToggleAllDone}
       {elTodoList}
       {elFooter}
@@ -64,12 +64,12 @@ export default function MainSection(props) {
   );
 }
 
-MainSection.propTypes = Object.assign({}, AppPropTypes, {
-  section: PropTypes.shape({ children: PropTypes.shape({
-    ToggleAllDone: PropTypes.object,
-    TodoList: PropTypes.object,
-    Footer: PropTypes.object,
+MainSection.propTypes = Object.assign({}, PropTypesApp, {
+  sectionProps: PropTypes.shape({ children: PropTypes.shape({
+    ToggleAllDoneProps: PropTypes.object,
+    TodoListProps: PropTypes.object,
+    FooterProps: PropTypes.object,
   }) }),
 });
 
-MainSection.defaultProps = defaultProps;
+MainSection.defaultProps = defaultPropsMainSection;

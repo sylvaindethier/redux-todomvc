@@ -1,4 +1,4 @@
-export default function defaults(props, ...args) {
+export default function defaultProps(props, ...args) {
   const _props = {};
   for (const key in props) {
     if (!props.hasOwnProperty(key)) continue;
@@ -10,61 +10,61 @@ export default function defaults(props, ...args) {
 }
 
 
-export const EditTodoText = {
+export const defaultPropsEditTodoText = {
   isNew: false,
-  // input: {},
+  // inputProps: {},
 };
 
-export const CreateText = {
-  EditTodoText: Object.assign({}, EditTodoText, {
+export const defaultPropsCreateText = {
+  EditTodoTextProps: Object.assign({}, defaultPropsEditTodoText, {
     isNew: true,
-    input: {
+    inputProps: {
       placeholder: 'What needs to be done',
       className: 'new-todo',
     },
   }),
 };
 
-export const DeleteAll = {
+export const defaultPropsDeleteAll = {
 };
 
-export const DeleteAllDone = {
-  button: {
+export const defaultPropsDeleteAllDone = {
+  buttonProps: {
     className: 'clear-completed',
     children: 'Delete completed',
   },
 };
 
-export const DeleteTodo = {
-  button: { className: 'destroy' },
+export const defaultPropsDeleteTodo = {
+  buttonProps: { className: 'destroy' },
 };
 
-export const EditableTodoText = {
-  // label: {},
+export const defaultPropsEditableTodoText = {
+  // labelProps: {},
 };
 
-export const Filter = {
+export const defaultPropsFilter = {
   isCurrent: false,
-  a: {
+  aProps: {
     className: props => props.isCurrent ? 'selected' : '',
     style: props => (props.isCurrent ? null : { cursor: 'pointer' }),
     children: props => ({ NONE: 'All', DONE: 'Done', TODO: 'Todo' })[props.filter],
   },
 };
 
-export const ToggleAllDone = {
-  input: { className: 'toggle-all' },
+export const defaultPropsToggleAllDone = {
+  inputProps: { className: 'toggle-all' },
   totalCount: 0,
   doneCount: 0,
 };
 
-export const ToggleTodoDone = {
-  input: { className: 'toggle' },
+export const defaultPropsToggleTodoDone = {
+  inputProps: { className: 'toggle' },
 };
 
-export const UpdateTodoText = {
-  EditTodoText: Object.assign({}, EditTodoText, {
-    input: {
+export const defaultPropsUpdateTodoText = {
+  EditTodoTextProps: Object.assign({}, defaultPropsEditTodoText, {
+    inputProps: {
       className: 'edit',
     },
   }),
@@ -74,27 +74,27 @@ export const UpdateTodoText = {
 /* ************************************************************************* */
 
 
-export const FilterList = {
-  ul: {
+export const defaultPropsFilterList = {
+  ulProps: {
     className: 'filters',
     children: {
-      li: {
+      liProps: {
         children: {
-          // Filter: {}
+          // FilterProps: {}
         },
       },
     },
   },
 };
 
-export const Footer = {
+export const defaultPropsFooter = {
   totalCount: 0,
   doneCount: 0,
   filteredCount: 0,
-  footer: {
+  footerProps: {
     className: 'footer',
     children: {
-      span: {
+      spanProps: {
         className: 'todo-count',
         dangerouslySetInnerHTML: (leftCount, totalCount, filteredCount) => ({
           __html: [
@@ -106,56 +106,56 @@ export const Footer = {
           ].join(' '),
         }),
       },
-      // FilterList: {},
-      // DeleteAllDone: {},
+      // FilterListProps: {},
+      // DeleteAllDoneProps: {},
     },
   },
 };
 
-export const Header = {
-  header: {
+export const defaultPropsHeader = {
+  headerProps: {
     className: 'header',
     children: {
-      h1: { children: 'todos' },
-      // CreateText: {},
+      h1Props: { children: 'todos' },
+      // CreateTextProps: {},
     },
   },
 };
 
-export const MainSection = {
-  section: {
+export const defaultPropsMainSection = {
+  sectionProps: {
     className: 'main',
     children: {
-      // ToggleAllDone: {},
-      // TodoList: {},
-      // Footer: {},
+      // ToggleAllDoneProps: {},
+      // TodoListProps: {},
+      // FooterProps: {},
     },
   },
 };
 
-export const Todo = {
-  // UpdateTodoText: {},
-  div: {
+export const defaultPropsTodo = {
+  // UpdateTodoTextProps: {},
+  divProps: {
     className: 'view',
     children: {
-      // ToggleTodoDone: {},
-      // EditableTodoText: {},
-      // DeleteTodo: {},
+      // ToggleTodoDoneProps: {},
+      // EditableTodoTextProps: {},
+      // DeleteTodoProps: {},
     },
   },
 };
 
-export const TodoList = {
-  ul: {
+export const defaultPropsTodoList = {
+  ulProps: {
     className: 'todo-list',
     children: {
-      li: {
+      liProps: {
         className: (done, editing) => [
           done ? 'completed' : null,
           editing ? 'editing' : null,
         ].join(' '),
         children: {
-          // Todo: {}
+          // TodoProps: {}
         },
       },
     },

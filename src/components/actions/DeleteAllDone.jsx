@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import { actions as actionsPropTypes } from '../../props/types';
-import defaults, { DeleteAllDone as defaultProps } from '../../props/defaults';
+import { PropTypesActions } from '../../props/types';
+import defaultProps, { defaultPropsDeleteAllDone } from '../../props/defaults';
 
 
 // no need for a deleteAllDone handler, event & props are useless
@@ -8,19 +8,19 @@ import defaults, { DeleteAllDone as defaultProps } from '../../props/defaults';
  * DeleteAllDone component
  */
 export default function DeleteAllDone(props) {
-  const { actions, button } = props;
+  const { actions, buttonProps } = props;
   return (
     <button
       onClick={actions.deleteAllDone}
-      {...defaults(button)}
+      {...defaultProps(buttonProps)}
     />
   );
 }
 
 DeleteAllDone.propTypes = {
-  actions: actionsPropTypes,
+  actions: PropTypesActions,
 
-  button: PropTypes.object,
+  buttonProps: PropTypes.object,
 };
 
-DeleteAllDone.defaultProps = defaultProps;
+DeleteAllDone.defaultProps = defaultPropsDeleteAllDone;

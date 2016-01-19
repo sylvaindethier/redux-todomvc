@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  todo as todoPropTypes,
-} from '../../props/types';
-import defaults, { ToggleTodoDone as defaultProps } from '../../props/defaults';
+import { PropTypesActtions, PropTypesTodo } from '../../props/types';
+import defaultProps, { defaultPropsToggleTodoDone } from '../../props/defaults';
 
 
 // function toggleTodoDoneAction(props) {
@@ -23,22 +20,22 @@ function toggleTodoDoneHandler(props) {
  * ToggleTodoDone component
  */
 export default function ToggleTodoDone(props) {
-  const { todo: { done }, input } = props;
+  const { todo: { done }, inputProps } = props;
   return (
     <input
       onChange={toggleTodoDoneHandler(props)}
       type="checkbox"
       checked={done}
-      {...defaults(input)}
+      {...defaultProps(inputProps)}
     />
   );
 }
 
 ToggleTodoDone.propTypes = {
-  actions: actionsPropTypes,
-  todo: todoPropTypes,
+  actions: PropTypesActtions,
+  todo: PropTypesTodo,
 
-  input: PropTypes.object,
+  inputProps: PropTypes.object,
 };
 
 ToggleTodoDone.defaultProps = defaultProps;

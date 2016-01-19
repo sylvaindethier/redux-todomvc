@@ -1,9 +1,6 @@
 import React, { PropTypes } from 'react';
-import {
-  actions as actionsPropTypes,
-  todo as todoPropTypes,
-} from '../../props/types';
-import defaults, { EditableTodoText as defaultProps } from '../../props/defaults';
+import { PropTypesActions, PropTypesTodo } from '../../props/types';
+import defaultProps, { defaultPropsEditableTodoText } from '../../props/defaults';
 
 
 // function editTodoTextAction(props) {
@@ -23,11 +20,11 @@ function editTodoTextHandler(props) {
  * EditableTodoText component
  */
 export default function EditableTodoText(props) {
-  const { todo: { text }, label } = props;
+  const { todo: { text }, labelProps } = props;
   return (
     <label
       onDoubleClick={editTodoTextHandler(props)}
-      {...defaults(label, props)}
+      {...defaultProps(labelProps, props)}
     >
       {text}
     </label>
@@ -35,10 +32,10 @@ export default function EditableTodoText(props) {
 }
 
 EditableTodoText.propTypes = {
-  actions: actionsPropTypes,
-  todo: todoPropTypes,
+  actions: PropTypesActions,
+  todo: PropTypesTodo,
 
-  label: PropTypes.object,
+  labelProps: PropTypes.object,
 };
 
 EditableTodoText.defaultProps = defaultProps;
