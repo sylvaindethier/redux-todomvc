@@ -39,3 +39,4 @@ EditableTodoText.propTypes = {
 };
 
 EditableTodoText.defaultProps = defaultPropsEditableTodoText;
+EditableTodoText.displayName = 'EditableTodoText';

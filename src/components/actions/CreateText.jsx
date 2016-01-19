@@ -53,3 +53,4 @@ CreateText.propTypes = {
 };
 
 CreateText.defaultProps = defaultPropsCreateText;
+CreateText.displayName = 'CreateText';

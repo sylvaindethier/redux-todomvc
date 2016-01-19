@@ -38,3 +38,4 @@ Filter.propTypes = {
 };
 
 Filter.defaultProps = defaultPropsFilter;
+Filter.displayName = 'Filter';

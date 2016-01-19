@@ -37,3 +37,4 @@ DeleteTodo.propTypes = {
 };
 
 DeleteTodo.defaultProps = defaultPropsDeleteTodo;
+DeleteTodo.displayName = 'DeleteTodo';

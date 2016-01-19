@@ -27,3 +27,4 @@ ToggleAllDone.propTypes = {
 };
 
 ToggleAllDone.defaultProps = defaultPropsToggleAllDone;
+ToggleAllDone.displayName = 'ToggleAllDone';

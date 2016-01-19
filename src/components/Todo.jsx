@@ -65,3 +65,4 @@ Todo.propTypes = {
 };
 
 Todo.defaultProps = defaultPropsTodo;
+Todo.displayName = 'Todo';

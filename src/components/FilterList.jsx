@@ -48,3 +48,4 @@ FilterList.propTypes = {
 };
 
 FilterList.defaultProps = defaultPropsFilterList;
+FilterList.displayName = 'FilterList';

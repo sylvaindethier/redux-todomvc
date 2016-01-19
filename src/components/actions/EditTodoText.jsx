@@ -77,3 +77,4 @@ EditTodoText.propTypes = {
 };
 
 EditTodoText.defaultProps = defaultPropsEditTodoText;
+EditTodoText.displayName = 'EditTodoText';

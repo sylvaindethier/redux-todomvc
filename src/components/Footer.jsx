@@ -53,3 +53,4 @@ Footer.propTypes = {
 };
 
 Footer.defaultProps = defaultPropsFooter;
+Footer.displayName = 'Footer';

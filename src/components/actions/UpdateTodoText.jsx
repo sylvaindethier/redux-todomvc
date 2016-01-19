@@ -60,3 +60,4 @@ UpdateTodoText.propTypes = {
 };
 
 UpdateTodoText.defaultProps = defaultPropsUpdateTodoText;
+UpdateTodoText.displayName = 'UpdateTodoText';

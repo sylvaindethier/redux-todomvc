@@ -24,3 +24,4 @@ DeleteAllDone.propTypes = {
 };
 
 DeleteAllDone.defaultProps = defaultPropsDeleteAllDone;
+DeleteAllDone.displayName = 'DeleteAllDone';

@@ -38,3 +38,4 @@ Header.propTypes = {
 };
 
 Header.defaultProps = defaultPropsHeader;
+Header.displayName = 'Header';

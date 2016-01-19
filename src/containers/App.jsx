@@ -32,6 +32,7 @@ class App extends Component {
 }
 
 App.propTypes = PropTypesApp;
+App.displayName = 'App';
 
 function mapStateToProps(state) {
   return {

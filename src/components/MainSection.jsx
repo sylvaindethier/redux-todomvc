@@ -73,3 +73,4 @@ MainSection.propTypes = Object.assign({}, PropTypesApp, {
 });
 
 MainSection.defaultProps = defaultPropsMainSection;
+MainSection.displayName = 'MainSection';

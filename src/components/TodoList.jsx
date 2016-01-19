@@ -45,3 +45,4 @@ TodoList.propTypes = {
 };
 
 TodoList.defaultProps = defaultPropsTodoList;
+TodoList.displayName = 'TodoList';

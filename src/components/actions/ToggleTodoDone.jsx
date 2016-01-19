@@ -39,3 +39,4 @@ ToggleTodoDone.propTypes = {
 };
 
 ToggleTodoDone.defaultProps = defaultPropsToggleTodoDone;
+ToggleTodoDone.displayName = 'ToggleTodoDone';

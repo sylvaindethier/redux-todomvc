@@ -16,3 +16,4 @@ DeleteAll.propTypes = {
 };
 
 DeleteAll.defaultProps = defaultPropsDeleteAll;
+DeleteAll.displayName = 'DeleteAll';
