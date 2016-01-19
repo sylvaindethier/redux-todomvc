@@ -23,8 +23,7 @@ import EditTodoText from './EditTodoText';
 function saveTextHandler(props) {
   return function saveText({ text }) {
     // saveTextAction(props, { text });
-    const { actions, editing, todo } = props;
-    const { id } = editing;
+    const { actions, editing: { id }, todo } = props;
 
     if (!text.length) {
       // delete if text has been erased

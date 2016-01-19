@@ -14,9 +14,15 @@ import { filters } from '../constants/filters';
 export default function FilterList(props) {
   const { actions, filter: current } = props;
 
-  const { ul } = props;
-  const { li } = ul.children;
-  const { Filter: filter } = li.children;
+  const {
+    ul,
+    ul: { children: {
+      li,
+    } },
+    ul: { children: { li: { children: {
+      Filter: filter,
+    } } } },
+  } = props;
   return (
     <ul {...ul}>
       {filters.map(filtr =>

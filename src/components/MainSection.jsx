@@ -20,12 +20,14 @@ export default function MainSection(props) {
   );
   const filteredCount = filtered.length;
 
-  const { section } = props;
   const {
-    ToggleAllDone: toggleAllDone,
-    TodoList: todoList,
-    Footer: footer,
-  } = section.children;
+    section,
+    section: { children: {
+      ToggleAllDone: toggleAllDone,
+      TodoList: todoList,
+      Footer: footer,
+    } },
+  } = props;
 
   const elToggleAllDone = !totalCount ? null : (
     <ToggleAllDone

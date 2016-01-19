@@ -28,12 +28,14 @@ export default function Todo(props) {
     );
   }
 
-  const { div } = props;
   const {
-    ToggleTodoDone: toggleTodoDone,
-    DeleteTodo: deleteTodo,
-    EditableTodoText: editableTodoText,
-  } = div.children;
+    div,
+    div: { children: {
+      ToggleTodoDone: toggleTodoDone,
+      DeleteTodo: deleteTodo,
+      EditableTodoText: editableTodoText,
+    } },
+  } = props;
   return (
     <div {...defaults(div)}>
       <ToggleTodoDone

@@ -44,8 +44,7 @@ function keydownHandler(props) {
 }
 function changeHandler(props) {
   return function handleChange(e) {
-    const { actions } = props;
-    const { id } = props.editing;
+    const { actions, editing: { id } } = props;
     const text = e.target.value;
     // editTodoTextAction(props, { id, text });
     actions.editTodoText({ id, text });
@@ -57,12 +56,12 @@ function changeHandler(props) {
  * EditTodoText component
  */
 export default function EditTodoText(props) {
-  const { editing, input } = props;
+  const { editing: { text }, input } = props;
   return (
     <input
       type="text"
       autoFocus="true"
-      value={editing.text}
+      value={text}
       onBlur={blurHandler(props)}
       onChange={changeHandler(props)}
       onKeyDown={keydownHandler(props)}

@@ -11,8 +11,13 @@ import CreateText from './actions/CreateText';
  * Header component
  */
 export default function Header(props) {
-  const { actions, editing, header } = props;
-  const { h1, CreateText: createText } = header.children;
+  const { actions, editing,
+    header,
+    header: { children: {
+      h1,
+      CreateText: createText,
+    } },
+  } = props;
   return (
     <header {...defaults(header)}>
       <h1 {...defaults(h1)} />

@@ -30,12 +30,12 @@ function createTextHandler(props) {
 export default function CreateText(props) {
   const {
     actions,
-    editing,
+    editing: { id, text },
     EditTodoText: editTodoText,
   } = props;
   const editingCreateText = {
     id: '', // editing.id is always empty for new todo
-    text: editing.id ? '' : editing.text, // do not pass text if not editing
+    text: id ? '' : text, // do not pass text if not editing
   };
   return (
     <EditTodoText

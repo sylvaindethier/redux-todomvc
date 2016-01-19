@@ -15,12 +15,14 @@ export default function Footer(props) {
   const { actions, filter, totalCount, doneCount, filteredCount } = props;
   const leftCount = totalCount - doneCount;
 
-  const { footer } = props;
   const {
-    span,
-    FilterList: filterList,
-    DeleteAllDone: deleteAllDone,
-  } = footer.children;
+    footer,
+    footer: { children: {
+      span,
+      FilterList: filterList,
+      DeleteAllDone: deleteAllDone,
+    } },
+  } = props;
   return (
     <footer {...defaults(footer)}>
       <span {...defaults(span, leftCount, totalCount, filteredCount)} />

@@ -13,8 +13,8 @@ import defaults, { Filter as defaultProps } from '../../props/defaults';
 function filterHandler(props) {
   return function hanldeClick(/* e */) {
     // filterAction(props);
-    const { actions, filter: filtr } = props;
-    actions.filter(filtr);
+    const { actions, filter } = props;
+    actions.filter(filter);
   };
 }
 

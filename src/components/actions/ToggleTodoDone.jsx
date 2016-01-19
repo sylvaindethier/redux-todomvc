@@ -23,12 +23,12 @@ function toggleTodoDoneHandler(props) {
  * ToggleTodoDone component
  */
 export default function ToggleTodoDone(props) {
-  const { todo, input } = props;
+  const { todo: { done }, input } = props;
   return (
     <input
       onChange={toggleTodoDoneHandler(props)}
       type="checkbox"
-      checked={todo.done}
+      checked={done}
       {...defaults(input)}
     />
   );

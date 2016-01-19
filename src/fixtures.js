@@ -12,7 +12,7 @@ export const initialState = {
     },
     {
       id: '324fd24e-8606-4fa1-8d22-77c6cb956b61',
-      done: false,
+      done: true,
       text: 'Server Side Rendering',
     },
   ],

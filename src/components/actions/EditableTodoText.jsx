@@ -23,13 +23,13 @@ function editTodoTextHandler(props) {
  * EditableTodoText component
  */
 export default function EditableTodoText(props) {
-  const { todo, label } = props;
+  const { todo: { text }, label } = props;
   return (
     <label
       onDoubleClick={editTodoTextHandler(props)}
       {...defaults(label, props)}
     >
-      {todo.text}
+      {text}
     </label>
   );
 }

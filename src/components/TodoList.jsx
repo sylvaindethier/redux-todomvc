@@ -11,9 +11,15 @@ import Todo from './Todo';
 export default function TodoList(props) {
   const { actions, todos, editing } = props;
 
-  const { ul } = props;
-  const { li } = ul.children;
-  const { Todo: todo } = li.children;
+  const {
+    ul,
+    ul: { children: {
+      li,
+    } },
+    ul: { children: { li: { children: {
+      Todo: todo,
+    } } } },
+  } = props;
   return (
     <ul {...defaults(ul)}>
       {todos.map(td => (
