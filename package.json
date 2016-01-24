@@ -57,6 +57,7 @@
     "gh-pages": "^0.8.0",
     "html-webpack-plugin": "^2.6.2",
     "mocha": "^2.3.4",
+    "react-addons-test-utils": "^0.14.6",
     "redux-logger": "^2.3.2",
     "rimraf": "^2.5.0",
     "style-loader": "^0.13.0",
